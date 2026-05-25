@@ -1,0 +1,1111 @@
+{
+    "$__mpe_config_200环": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": 155,
+                "y": 852,
+                "zoom": 0.35
+            },
+            "filename": "200环",
+            "version": "v1.5.3"
+        }
+    },
+    "$__mpe_group_200_问答循环_200环": {
+        "$__mpe_code": {
+            "position": {
+                "x": 1955,
+                "y": -1279
+            },
+            "color": "blue",
+            "childrenLabels": [
+                "默认选A",
+                "答错",
+                "答题-开始循环",
+                "点击任务栏重新触发",
+                "答对",
+                "答题界面_入口"
+            ],
+            "width": 1322,
+            "height": 866
+        }
+    },
+    "$__mpe_group_200_买书_200环": {
+        "$__mpe_code": {
+            "position": {
+                "x": 1957,
+                "y": 104
+            },
+            "color": "blue",
+            "childrenLabels": [
+                "买技能书",
+                "买书入口",
+                "银两不足",
+                "关闭",
+                "点勾",
+                "回流号-确定购买"
+            ],
+            "width": 1075,
+            "height": 781
+        }
+    },
+    "$__mpe_group_200环入口_200环": {
+        "$__mpe_code": {
+            "position": {
+                "x": -326,
+                "y": -1129
+            },
+            "color": "blue",
+            "childrenLabels": [
+                "Start200Huan",
+                "200环-循环开始",
+                "start_200",
+                "周月常",
+                "上滑动",
+                "前往200"
+            ],
+            "width": 1368,
+            "height": 487
+        }
+    },
+    "$__mpe_group_拼图_200环": {
+        "$__mpe_code": {
+            "position": {
+                "x": 1947,
+                "y": 987
+            },
+            "color": "blue",
+            "childrenLabels": [
+                "拼图入口",
+                "右上",
+                "归位",
+                "左上",
+                "左上归位",
+                "左下",
+                "左下归位"
+            ],
+            "width": 2206,
+            "height": 323
+        }
+    },
+    "$__mpe_group_任务宠_200环": {
+        "$__mpe_code": {
+            "position": {
+                "x": 1961,
+                "y": -366
+            },
+            "color": "blue",
+            "childrenLabels": [
+                "任务宠交易入口",
+                "点击所需宝宝",
+                "任务宠找到了",
+                "选自动"
+            ],
+            "width": 885,
+            "height": 420
+        }
+    },
+    "Start200Huan": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "do_200_active.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -15,
+                "y": -842
+            }
+        }
+    },
+    "200环-循环开始": {
+        "next": [
+            "200环-奖励结点",
+            "勾选自动",
+            "领取200环",
+            "技能-已经有了",
+            "点击上交",
+            "默认点击",
+            "送书",
+            "妖王战斗",
+            "关闭活动面板",
+            "答题界面_入口",
+            "任务宠交易入口",
+            "买书入口",
+            "拼图入口",
+            "200环重新触发",
+            "等待重试"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 733,
+                "y": -814
+            }
+        }
+    },
+    "妖王战斗": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "bay.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    -21,
+                    -79,
+                    13,
+                    10
+                ]
+            }
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2488,
+                "y": -2029
+            }
+        }
+    },
+    "买技能书": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "book_list.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    951,
+                    613,
+                    10,
+                    5
+                ]
+            }
+        },
+        "next": [
+            "银两不足",
+            "回流号-确定购买"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2237,
+                "y": 421
+            }
+        }
+    },
+    "默认选A": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "A.png",
+                    "B.png",
+                    "C.png",
+                    "D.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 2000,
+        "next": [
+            "答题-开始循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2569,
+                "y": -877
+            }
+        }
+    },
+    "答错": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "no_pass.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    443,
+                    565,
+                    1,
+                    1
+                ]
+            }
+        },
+        "next": [
+            "答题-开始循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2784,
+                "y": -1054
+            }
+        }
+    },
+    "答题-开始循环": {
+        "next": [
+            "答对",
+            "答错",
+            "默认选A",
+            "点击任务栏重新触发"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2243,
+                "y": -931
+            }
+        }
+    },
+    "点击任务栏重新触发": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "200环任务链"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 2000,
+        "next": [
+            "答题-开始循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2580,
+                "y": -654
+            }
+        }
+    },
+    "答对": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "pass.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2570,
+                "y": -1195
+            }
+        }
+    },
+    "答题界面_入口": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    519,
+                    101,
+                    224,
+                    36
+                ],
+                "expected": [
+                    "问答"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "答题-开始循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1960,
+                "y": -973
+            }
+        }
+    },
+    "送书": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "book_200.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2782,
+                "y": -2023
+            }
+        }
+    },
+    "等待重试": {
+        "post_delay": 1000,
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2818,
+                "y": -1650
+            }
+        }
+    },
+    "默认点击": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "left.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2818,
+                "y": -2207
+            }
+        }
+    },
+    "200环-奖励结点": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "money.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    5,
+                    109,
+                    -16,
+                    -48
+                ]
+            }
+        },
+        "next": [
+            "200环-循环结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1167,
+                "y": -2207
+            }
+        }
+    },
+    "200环-循环结束": {
+        "$__mpe_code": {
+            "position": {
+                "x": 3332,
+                "y": -1184
+            }
+        }
+    },
+    "start_200": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "huodong.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "Start200Huan",
+            "周月常"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -308,
+                "y": -983
+            }
+        }
+    },
+    "周月常": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "week_task2.png",
+                    "week_task.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "前往200",
+            "上滑动"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -52,
+                "y": -1130
+            }
+        }
+    },
+    "上滑动": {
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    502,
+                    465,
+                    56,
+                    30
+                ],
+                "end": [
+                    [
+                        534,
+                        269,
+                        78,
+                        29
+                    ]
+                ]
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "前往200"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 215,
+                "y": -1034
+            }
+        }
+    },
+    "前往200": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "200h2.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    246,
+                    51,
+                    -5,
+                    6
+                ]
+            }
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 498,
+                "y": -1045
+            }
+        }
+    },
+    "领取200环": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "领取200环"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1944,
+                "y": -2207
+            }
+        }
+    },
+    "200环重新触发": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1043,
+                    123,
+                    227,
+                    333
+                ],
+                "expected": [
+                    "200环任务链"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2529,
+                "y": -1659
+            }
+        }
+    },
+    "买书入口": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "shop.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1136,
+                    305,
+                    1,
+                    1
+                ]
+            }
+        },
+        "next": [
+            "点勾",
+            "买技能书"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1963,
+                "y": 275
+            }
+        }
+    },
+    "任务宠交易入口": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "task_baby.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    215,
+                    132,
+                    1,
+                    1
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "任务宠交易"
+        },
+        "next": [
+            "选自动",
+            "任务宠找到了"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1996,
+                "y": -251
+            }
+        }
+    },
+    "点击所需宝宝": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "task_baby.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1111,
+                    85,
+                    1,
+                    1
+                ]
+            }
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2582,
+                "y": -328
+            }
+        }
+    },
+    "勾选自动": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "give.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    8,
+                    11,
+                    -75,
+                    -17
+                ]
+            }
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1435,
+                "y": -2207
+            }
+        }
+    },
+    "技能-已经有了": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "have.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2206,
+                "y": -2207
+            }
+        }
+    },
+    "拼图入口": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "拼图鬼考验",
+                    "拼图"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "右上"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1965,
+                "y": 1060
+            }
+        }
+    },
+    "右上": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "r_top.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 0,
+        "focus": "1000",
+        "next": [
+            "归位"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2235,
+                "y": 1043
+            }
+        }
+    },
+    "归位": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    932,
+                    242,
+                    1,
+                    1
+                ]
+            }
+        },
+        "next": [
+            "左上"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2513,
+                "y": 1047
+            }
+        }
+    },
+    "左上": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "l_top.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 0,
+        "focus": "1000",
+        "next": [
+            "左上归位"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2843,
+                "y": 1041
+            }
+        }
+    },
+    "左上归位": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    669,
+                    250,
+                    1,
+                    1
+                ]
+            }
+        },
+        "next": [
+            "左下"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 3161,
+                "y": 1073
+            }
+        }
+    },
+    "左下": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "l_buttom.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1000,
+        "next": [
+            "左下归位"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 3485,
+                "y": 1058
+            }
+        }
+    },
+    "左下归位": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    672,
+                    521,
+                    27,
+                    24
+                ]
+            }
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 3784,
+                "y": 1041
+            }
+        }
+    },
+    "银两不足": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "no_money.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    444,
+                    -89,
+                    -70,
+                    3
+                ]
+            }
+        },
+        "next": [
+            "关闭"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2608,
+                "y": 428
+            }
+        }
+    },
+    "关闭": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "error.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2608,
+                "y": 154
+            }
+        }
+    },
+    "点击上交": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "give.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2500,
+                "y": -2207
+            }
+        }
+    },
+    "任务宠找到了": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "find_baby.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2310,
+                "y": -91
+            }
+        }
+    },
+    "关闭活动面板": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "task_panel.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1113,
+                    85,
+                    1,
+                    1
+                ]
+            }
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2197,
+                "y": -2029
+            }
+        }
+    },
+    "选自动": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "200_true.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "点击所需宝宝"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2301,
+                "y": -307
+            }
+        }
+    },
+    "点勾": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "200_true.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "买书入口"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2230,
+                "y": 202
+            }
+        }
+    },
+    "回流号-确定购买": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "true.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "200环-循环开始"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2594,
+                "y": 675
+            }
+        }
+    }
+}

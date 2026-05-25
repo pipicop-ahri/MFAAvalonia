@@ -1,0 +1,365 @@
+{
+    "$__mpe_config_xl_task": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": 134,
+                "y": -1250,
+                "zoom": 0.62
+            },
+            "filename": "xl_task",
+            "version": "v1.5.3"
+        }
+    },
+    "xinmo_is_over_副本6": {
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "sub_name": "icon",
+                        "recognition": "TemplateMatch",
+                        "template": "xiuluo.png",
+                        "threshold": 0.7
+                    },
+                    {
+                        "recognition": "TemplateMatch",
+                        "roi": "icon",
+                        "roi_offset": [
+                            275,
+                            58,
+                            15,
+                            31
+                        ],
+                        "template": "is_ok.png"
+                    }
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "修罗已完成"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 1513,
+                "y": 2630
+            }
+        }
+    },
+    "xl_检索任务": {
+        "focus": {
+            "Node.Action.Starting": "进入检索循环"
+        },
+        "$note": "检索分流:先找可做任务→去做;否则判断是否到底全完成→结束;都不是则上滑再找。异常总入口与未知页面兜底放最后",
+        "next": [
+            "xinmo_is_over_副本6",
+            "发现_修罗",
+            "xl_上滑继续检索",
+            "xl_task"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1175,
+                "y": 2909
+            }
+        }
+    },
+    "xl_上滑继续检索": {
+        "max_hit": 8,
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    526,
+                    451,
+                    0,
+                    3
+                ],
+                "end": [
+                    [
+                        575,
+                        218,
+                        1,
+                        1
+                    ]
+                ],
+                "duration": 300
+            }
+        },
+        "post_delay": 2000,
+        "focus": {
+            "Node.Action.Starting": "上滑列表"
+        },
+        "next": [
+            "xl_检索任务"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1513,
+                "y": 3118
+            }
+        }
+    },
+    "发现_修罗": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "xiuluo.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    276,
+                    57,
+                    -34,
+                    -6
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "发现_修罗"
+        },
+        "next": [
+            "xl_前往循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1513,
+                "y": 2875
+            }
+        }
+    },
+    "xl_active_daily": {
+        "desc": "激活日常任务栏",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "task_panel.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    352,
+                    -16,
+                    23,
+                    -36
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "开始激活日常任务栏"
+        },
+        "next": [
+            "xl_检索任务"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 878,
+                "y": 2896
+            }
+        }
+    },
+    "xiuluo": {
+        "focus": {
+            "Node.Action.Starting": "修罗任务启动"
+        },
+        "next": [
+            "xl_task",
+            "xl_active_daily"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 507,
+                "y": 2962
+            }
+        }
+    },
+    "xl_task": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "huodong.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Succeeded": "检索活动按钮"
+        },
+        "next": [
+            "xl_active_daily"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 901,
+                "y": 2671
+            }
+        }
+    },
+    "xl_前往循环": {
+        "next": [
+            "修罗结束",
+            "灵兽村使者",
+            "xl_冲刺",
+            "战斗中_副本3",
+            "正在路上"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1817,
+                "y": 2962
+            }
+        }
+    },
+    "灵兽村使者": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "shizhe.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    2,
+                    181,
+                    -4,
+                    -1
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 2391,
+                "y": 2558
+            }
+        }
+    },
+    "正在路上": {
+        "desc": "",
+        "post_delay": 2000,
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "next": [
+            "xl_前往循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2128,
+                "y": 3315
+            }
+        }
+    },
+    "战斗中_副本3": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "post_delay": 3000,
+        "focus": {
+            "Node.Action.Succeeded": "开始战斗"
+        },
+        "next": [
+            "自锁-战斗结束_副本4",
+            "战斗中_副本3"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2128,
+                "y": 3027
+            }
+        }
+    },
+    "自锁-战斗结束_副本4": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "focus": {
+            "Node.Action.Succeeded": "战斗结束"
+        },
+        "next": [
+            "xl_前往循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2378,
+                "y": 3035
+            }
+        }
+    },
+    "修罗结束": {
+        "desc": "心魔已完成",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "xiuluo_over.png"
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "心魔已完成"
+        },
+        "next": [
+            "xiuluo"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2144,
+                "y": 2383
+            }
+        }
+    },
+    "xl_冲刺": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "run.pnt"
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 2641,
+                "y": 2816
+            }
+        }
+    }
+}

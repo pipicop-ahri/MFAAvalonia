@@ -1,0 +1,429 @@
+{
+    "$__mpe_config_新建Pipeline6": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": 3231,
+                "y": 1543,
+                "zoom": 0.72
+            },
+            "filename": "新建Pipeline6",
+            "version": "v1.5.3"
+        }
+    },
+    "s_找星": {
+        "max_hit": 5,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "地杰星",
+                    "地飞星",
+                    "地狗星",
+                    "地平星"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    27,
+                    -136,
+                    -52,
+                    64
+                ]
+            }
+        },
+        "next": [
+            "s_确定",
+            "s_我要观点",
+            "s_重叠了"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2742,
+                "y": -1102
+            }
+        }
+    },
+    "s_确定": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    833,
+                    407,
+                    383,
+                    111
+                ],
+                "expected": [
+                    "就是来挑战你的",
+                    "挑战你"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1000,
+        "next": [
+            "s_挑战选择中"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2426,
+                "y": -1368
+            }
+        }
+    },
+    "s_战斗中": {
+        "desc": "战斗中：识别到battle.png就锁进自锁，打架时其它节点全程不参与",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "post_delay": 3000,
+        "focus": {
+            "Node.Action.Succeeded": "开始战斗"
+        },
+        "next": [
+            "s_结束战斗",
+            "s_战斗中"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1778,
+                "y": -1560
+            }
+        }
+    },
+    "s_结束战斗": {
+        "desc": "battle.png消失=战斗结束，回循环",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "focus": {
+            "Node.Action.Succeeded": "战斗结束"
+        },
+        "next": [
+            "s_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1490,
+                "y": -1548
+            }
+        }
+    },
+    "s_找星模式": {
+        "next": [
+            "s_找星",
+            "s_重置"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3046,
+                "y": -1041
+            }
+        }
+    },
+    "s_重置": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "s_找星模式"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2758,
+                "y": -841
+            }
+        }
+    },
+    "s_挑战选择中": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/select.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 4000,
+        "next": [
+            "s_战斗中",
+            "s_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2130,
+                "y": -1440
+            }
+        }
+    },
+    "s_相机": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/carema.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "s_拍照"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -4209,
+                "y": -1218
+            }
+        }
+    },
+    "s_拍照": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/carema_photo.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "s_前置循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3868,
+                "y": -1318
+            }
+        }
+    },
+    "s_进入点星模式": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    121,
+                    640,
+                    71,
+                    63
+                ],
+                "expected": [
+                    "点星"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "s_前置循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3327,
+                "y": -1189
+            }
+        }
+    },
+    "s_进入隐藏细节": {
+        "max_hit": 1,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/eye.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "s_前置循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3310,
+                "y": -925
+            }
+        }
+    },
+    "s_前置循环": {
+        "next": [
+            "s_进入点星模式",
+            "s_进入隐藏细节",
+            "s_找星模式"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3630,
+                "y": -1001
+            }
+        }
+    },
+    "s_点星": {
+        "next": [
+            "s_相机",
+            "s_前置循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -4502,
+                "y": -1001
+            }
+        }
+    },
+    "s_重叠了": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/double2.png",
+                    "star/double.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "s_关闭重叠"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2350,
+                "y": -685
+            }
+        }
+    },
+    "s_关闭重叠": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1218,
+                    34,
+                    30,
+                    26
+                ]
+            }
+        },
+        "next": [
+            "s_找星"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1989,
+                "y": -783
+            }
+        }
+    },
+    "s_关闭点星模式": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1218,
+                    34,
+                    30,
+                    26
+                ]
+            }
+        },
+        "next": [
+            "s_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1649,
+                "y": -834
+            }
+        }
+    },
+    "s_我要观点": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    954,
+                    443,
+                    126,
+                    47
+                ],
+                "expected": [
+                    "我要观战"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    21,
+                    76,
+                    -47,
+                    -1
+                ]
+            }
+        },
+        "next": [
+            "s_关闭点星模式"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2350,
+                "y": -925
+            }
+        }
+    },
+    "s_点星结束": {
+        "$__mpe_code": {
+            "position": {
+                "x": -1180,
+                "y": -1136
+            }
+        }
+    },
+    "s_选1星": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "one.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": -2363,
+                "y": -1112
+            }
+        }
+    }
+}

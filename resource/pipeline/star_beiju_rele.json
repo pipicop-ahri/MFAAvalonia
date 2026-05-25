@@ -1,0 +1,1131 @@
+{
+    "$__mpe_config_新建Pipeline3": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": 4388,
+                "y": 1723,
+                "zoom": 0.57
+            },
+            "filename": "新建Pipeline3",
+            "version": "v1.5.3"
+        }
+    },
+    "新建节点1": {
+        "next": [
+            "bjdx_北俱战斗中_副本3",
+            "bjdx_前往兰若寺"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5087,
+                "y": -2196
+            }
+        }
+    },
+    "bjdx_战斗时间": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/8.1.png",
+                    "star/8.2.png",
+                    "star/9.1.png",
+                    "star/9.2.png",
+                    "star/7.png",
+                    "star/4.z.png",
+                    "star/4.j.png"
+                ],
+                "threshold": [
+                    0.9
+                ]
+            }
+        },
+        "timeout": 40000,
+        "next": [
+            "bjdx_确定停止巡逻",
+            "bjdx11_停止巡逻",
+            "新建节点28"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5694,
+                "y": -2676
+            }
+        }
+    },
+    "bjdx_关闭地图": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1056,
+                    72,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "bjdx_点星"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5008,
+                "y": -1426
+            }
+        }
+    },
+    "bjdx_战斗点星": {
+        "desc": "战斗中：识别到battle.png就锁进自锁，打架时其它节点全程不参与",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "post_delay": 3000,
+        "focus": {
+            "Node.Action.Succeeded": "开始战斗"
+        },
+        "next": [
+            "bjdx_点星战斗2",
+            "bjdx_战斗点星"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1129,
+                "y": -1403
+            }
+        }
+    },
+    "bjdx_点星战斗2": {
+        "desc": "battle.png消失=战斗结束，回循环",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "focus": {
+            "Node.Action.Succeeded": "战斗结束"
+        },
+        "next": [
+            "bjdx_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -775,
+                "y": -1312
+            }
+        }
+    },
+    "bjdx_找星": {
+        "max_hit": 5,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/17.png",
+                    "182.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    19,
+                    -125,
+                    -50,
+                    11
+                ]
+            }
+        },
+        "next": [
+            "bjdx_确定",
+            "bjdx_我要观点",
+            "bjdx_重叠了"
+        ],
+        "on_error": [
+            "bjdx_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2736,
+                "y": -1121
+            }
+        }
+    },
+    "bjdx_确定": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    833,
+                    407,
+                    383,
+                    111
+                ],
+                "expected": [
+                    "就是来挑战你的",
+                    "挑战你"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1000,
+        "focus": {
+            "Node.Action.Succeeded": "找到星了"
+        },
+        "next": [
+            "bjdx_挑战选择中"
+        ],
+        "on_error": [
+            "bjdx_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2411,
+                "y": -1257
+            }
+        }
+    },
+    "bjdx_找星模式": {
+        "focus": {
+            "Node.Action.Succeeded": "开始找星中"
+        },
+        "next": [
+            "bjdx_找星",
+            "bjdx_重置"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3046,
+                "y": -1041
+            }
+        }
+    },
+    "bjdx_重置": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "bjdx_找星模式"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2758,
+                "y": -841
+            }
+        }
+    },
+    "bjdx_挑战选择中": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/select.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 4000,
+        "next": [
+            "bjdx_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2130,
+                "y": -1440
+            }
+        }
+    },
+    "bjdx_相机": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/carema.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_拍照"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -4209,
+                "y": -1218
+            }
+        }
+    },
+    "bjdx_拍照": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/carema_photo.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_前置循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3868,
+                "y": -1318
+            }
+        }
+    },
+    "bjdx_进入点星模式": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    121,
+                    640,
+                    71,
+                    63
+                ],
+                "expected": [
+                    "点星"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_前置循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3327,
+                "y": -1189
+            }
+        }
+    },
+    "bjdx_进入隐藏细节": {
+        "max_hit": 1,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/eye.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_前置循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3310,
+                "y": -925
+            }
+        }
+    },
+    "bjdx_前置循环": {
+        "next": [
+            "bjdx_进入点星模式",
+            "bjdx_进入隐藏细节",
+            "bjdx_找星模式"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3630,
+                "y": -1001
+            }
+        }
+    },
+    "bjdx_点星": {
+        "focus": {
+            "Node.Action.Succeeded": "进入点星模式"
+        },
+        "next": [
+            "bjdx_相机",
+            "bjdx_前置循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -4502,
+                "y": -1001
+            }
+        }
+    },
+    "bjdx_北俱": {
+        "focus": {
+            "Node.Action.Succeeded": "开始北俱+点星"
+        },
+        "next": [
+            "bjdx_是否在北俱",
+            "bjdx_前往北俱",
+            "bjdx_北俱冰原",
+            "bjdx_地图",
+            "bjdx_背包找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -7085,
+                "y": -776
+            }
+        }
+    },
+    "bjdx_地图": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/map.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -7066,
+                "y": -1131
+            }
+        }
+    },
+    "bjdx_北俱冰原": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/beiju.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -7066,
+                "y": -1303
+            }
+        }
+    },
+    "bjdx_前往北俱": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    704,
+                    173,
+                    82,
+                    52
+                ],
+                "expected": [
+                    "冰小怪"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    97,
+                    228,
+                    -5,
+                    45
+                ]
+            }
+        },
+        "next": [
+            "bjdx_关闭北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -7079,
+                "y": -1551
+            }
+        }
+    },
+    "bjdx_关闭北俱": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1083,
+                    71,
+                    19,
+                    10
+                ]
+            }
+        },
+        "next": [
+            "bjdx_打开背包"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6795,
+                "y": -1551
+            }
+        }
+    },
+    "bjdx_是否在北俱": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/beiju_tittle.png"
+                ]
+            }
+        },
+        "next": [
+            "bjdx_打开背包"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -7066,
+                "y": -1750
+            }
+        }
+    },
+    "bjdx_重叠了": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/double2.png",
+                    "star/double.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_关闭重叠"
+        ],
+        "on_error": [
+            "bjdx_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2350,
+                "y": -685
+            }
+        }
+    },
+    "bjdx_关闭重叠": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1218,
+                    34,
+                    30,
+                    26
+                ]
+            }
+        },
+        "next": [
+            "bjdx_找星"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1989,
+                "y": -783
+            }
+        }
+    },
+    "bjdx_关闭点星模式": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1218,
+                    34,
+                    30,
+                    26
+                ]
+            }
+        },
+        "next": [
+            "bjdx_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1649,
+                "y": -834
+            }
+        }
+    },
+    "bjdx_我要观点": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    954,
+                    443,
+                    126,
+                    47
+                ],
+                "expected": [
+                    "我要观战"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    21,
+                    76,
+                    -47,
+                    -1
+                ]
+            }
+        },
+        "next": [
+            "bjdx_关闭点星模式"
+        ],
+        "on_error": [
+            "bjdx_点星结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2350,
+                "y": -925
+            }
+        }
+    },
+    "bjdx_点星结束": {
+        "focus": {
+            "Node.Action.Succeeded": "结束点星"
+        },
+        "next": [
+            "bjdx_战斗点星",
+            "bjdx_北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1465,
+                "y": -1251
+            }
+        }
+    },
+    "bjdx_打开背包": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/package.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6528,
+                "y": -1747
+            }
+        }
+    },
+    "bjdx_背包找香": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/bag.png"
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "背包找香"
+        },
+        "next": [
+            "bjdx_循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6952,
+                "y": -1950
+            }
+        }
+    },
+    "bjdx_循环找香": {
+        "next": [
+            "bjdx_巡逻",
+            "bjdx_确定用香",
+            "bjdx_使用香",
+            "bjdx_找到香了",
+            "bjdx_上滑找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6646,
+                "y": -1947
+            }
+        }
+    },
+    "bjdx_找到香了": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/xiang.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6271,
+                "y": -2185
+            }
+        }
+    },
+    "bjdx_上滑找香": {
+        "max_hit": 5,
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    830,
+                    495,
+                    24,
+                    24
+                ],
+                "end": [
+                    [
+                        828,
+                        207,
+                        21,
+                        16
+                    ]
+                ]
+            }
+        },
+        "next": [
+            "bjdx_循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6278,
+                "y": -1970
+            }
+        }
+    },
+    "bjdx_使用香": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/use.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6284,
+                "y": -2350
+            }
+        }
+    },
+    "bjdx_确定用香": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/true.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_关闭背包"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6284,
+                "y": -2519
+            }
+        }
+    },
+    "bjdx_关闭背包": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1104,
+                    85,
+                    17,
+                    11
+                ]
+            }
+        },
+        "next": [
+            "bjdx_循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5951,
+                "y": -1838
+            }
+        }
+    },
+    "bjdx_巡逻": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/xunluo.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Succeeded": "开始巡逻"
+        },
+        "next": [
+            "bjdx_巡逻循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6284,
+                "y": -2707
+            }
+        }
+    },
+    "bjdx_巡逻循环": {
+        "next": [
+            "bjdx_战斗时间",
+            "bjdx_北俱战斗中",
+            "bjdx_新建节点12"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5951,
+                "y": -2185
+            }
+        }
+    },
+    "bjdx_北俱战斗中": {
+        "desc": "战斗中：识别到battle.png就锁进自锁，打架时其它节点全程不参与",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    343,
+                    588,
+                    125,
+                    132
+                ],
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "bjdx_巡逻循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5650,
+                "y": -2369
+            }
+        }
+    },
+    "bjdx_北俱战斗结束": {
+        "desc": "battle.png消失=战斗结束，回循环",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    343,
+                    588,
+                    125,
+                    132
+                ],
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "next": [
+            "新建节点1"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -4335,
+                "y": -2220
+            }
+        }
+    },
+    "bjdx11_停止巡逻": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/little_map.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    805,
+                    82,
+                    -15,
+                    -9
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "停止巡逻"
+        },
+        "next": [
+            "bjdx_战斗时间"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5353,
+                "y": -2658
+            }
+        }
+    },
+    "bjdx_确定停止巡逻": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/true.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 3000,
+        "next": [
+            "新建节点1",
+            "bjdx_前往兰若寺"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5342,
+                "y": -2891
+            }
+        }
+    },
+    "bjdx_打开地图": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/map.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_前往兰若寺"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5299,
+                "y": -1082
+            }
+        }
+    },
+    "bjdx_前往兰若寺": {
+        "focus": {
+            "Node.Action.Succeeded": "前往兰若寺点星"
+        },
+        "next": [
+            "bjdx_占位",
+            "bjdx_大地图兰若寺",
+            "bjdx_打开地图"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5724,
+                "y": -1266
+            }
+        }
+    },
+    "bjdx_大地图兰若寺": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/lrs.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_前往兰若寺"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5299,
+                "y": -1236
+            }
+        }
+    },
+    "bjdx_占位": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/point.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    93,
+                    155,
+                    -95,
+                    -19
+                ]
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "bjdx_关闭地图"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5279,
+                "y": -1486
+            }
+        }
+    },
+    "bjdx_新建节点12": {
+        "next": [
+            "bjdx_巡逻循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5637,
+                "y": -1991
+            }
+        }
+    },
+    "bjdx_新建节点13": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/18.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": -2826,
+                "y": -1351
+            }
+        }
+    },
+    "bjdx_北俱战斗中_副本3": {
+        "desc": "战斗中：识别到battle.png就锁进自锁，打架时其它节点全程不参与",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    343,
+                    588,
+                    125,
+                    132
+                ],
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": {
+            "Node.Action.Succeeded": "停止巡逻后触发战斗"
+        },
+        "next": [
+            "bjdx_北俱战斗结束",
+            "bjdx_北俱战斗中_副本3"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -4768,
+                "y": -2559
+            }
+        }
+    },
+    "新建节点28": {
+        "next": [
+            "bjdx_战斗时间"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5379,
+                "y": -2396
+            }
+        }
+    }
+}

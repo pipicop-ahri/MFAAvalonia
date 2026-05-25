@@ -1,0 +1,330 @@
+{
+    "$__mpe_config_use_attribute_card": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": 718,
+                "y": -4129,
+                "zoom": 0.45
+            },
+            "filename": "use_attribute_card",
+            "version": "v1.5.3"
+        }
+    },
+    "点击1号位": {
+        "desc": "",
+        "max_hit": 1,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    294,
+                    237,
+                    8,
+                    7
+                ]
+            }
+        },
+        "next": [
+            "点击队伍取消弹窗",
+            "apply_card"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 134,
+                "y": 11585
+            }
+        }
+    },
+    "use_attribute_card": {
+        "focus": {
+            "Node.Action.Starting": "[color:cyan]日常一条龙 开始[/color]"
+        },
+        "next": [
+            "打开队伍面板_副本1"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -826,
+                "y": 10596
+            }
+        }
+    },
+    "打开队伍面板": {
+        "next": [
+            "点击1号位",
+            "eat_card_2",
+            "eat_card_3",
+            "eat_card_4",
+            "eat_card_5",
+            "close_team"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -186,
+                "y": 10624
+            }
+        }
+    },
+    "点击队伍取消弹窗": {
+        "desc": "已使用，取消弹窗",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "team.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    16,
+                    14,
+                    -24,
+                    -28
+                ]
+            }
+        },
+        "next": [
+            "打开队伍面板"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 774,
+                "y": 11623
+            }
+        }
+    },
+    "apply_card": {
+        "desc": "申请变身卡",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "apply_card.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "apply_use"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 454,
+                "y": 10621
+            }
+        }
+    },
+    "apply_use": {
+        "desc": "申请使用变身卡",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "apply_use.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "打开队伍面板"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 774,
+                "y": 9697
+            }
+        }
+    },
+    "eat_card_2": {
+        "desc": "检测2号位是否吃卡",
+        "max_hit": 1,
+        "pre_delay": 2000,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    475,
+                    235,
+                    26,
+                    22
+                ]
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "有变身卡",
+            "apply_card"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 134,
+                "y": 10149
+            }
+        }
+    },
+    "eat_card_3": {
+        "desc": "检测3号位是否吃卡",
+        "max_hit": 1,
+        "pre_delay": 2000,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    665,
+                    230,
+                    29,
+                    28
+                ]
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "有变身卡",
+            "apply_card"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 134,
+                "y": 10524
+            }
+        }
+    },
+    "eat_card_4": {
+        "desc": "检测四吃位是否吃卡",
+        "max_hit": 1,
+        "pre_delay": 2000,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    849,
+                    233,
+                    30,
+                    24
+                ]
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "有变身卡",
+            "apply_card"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 134,
+                "y": 11210
+            }
+        }
+    },
+    "eat_card_5": {
+        "desc": "检测5号位是否吃卡",
+        "max_hit": 1,
+        "pre_delay": 2000,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1043,
+                    231,
+                    25,
+                    30
+                ]
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "有变身卡",
+            "apply_card"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 134,
+                "y": 9774
+            }
+        }
+    },
+    "close_team": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "team.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    37,
+                    177,
+                    14,
+                    51
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "使用变身卡完成"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 134,
+                "y": 10899
+            }
+        }
+    },
+    "打开队伍面板_副本1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "team_icon.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "打开队伍面板"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -506,
+                "y": 10607
+            }
+        }
+    },
+    "有变身卡": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "change_card.png",
+                    "attr_card.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "点击队伍取消弹窗"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 454,
+                "y": 10398
+            }
+        }
+    }
+}

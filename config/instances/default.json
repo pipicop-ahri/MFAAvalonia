@@ -1,12 +1,113 @@
 {
-  "CurrentControllerName": "Adb",
-  "Resource": "默认",
-  "CurrentTasks": [],
-  "TaskItems": [],
+  "CurrentControllerName": "ADB 控制器",
+  "Resource": "默认资源",
+  "CurrentTasks": [
+    "200环<|||>start_200",
+    "无限北俱<|||>北俱",
+    "点星<|||>点星",
+    "北俱+点星<|||>bjdx_北俱",
+    "使用属性卡<|||>use_attribute_card",
+    "心魔试炼<|||>inner_demon",
+    "南斗星象<|||>nandou",
+    "福泽天下 天降祥瑞<|||>祥瑞点击剧情",
+    "修罗任务<|||>xiuluo",
+    "自定义动作<|||>action_custom",
+    "自定义识别<|||>recognition_custom"
+  ],
+  "TaskItems": [
+    {
+      "name": "200环",
+      "entry": "start_200",
+      "default_check": false,
+      "doc": [
+        "200环"
+      ]
+    },
+    {
+      "name": "无限北俱",
+      "entry": "北俱",
+      "default_check": false,
+      "doc": [
+        "无限北俱"
+      ]
+    },
+    {
+      "name": "点星",
+      "entry": "点星",
+      "default_check": false,
+      "doc": [
+        "需手动到达兰若寺开始，目前只技能17，18随机点星"
+      ]
+    },
+    {
+      "name": "北俱+点星",
+      "entry": "bjdx_北俱",
+      "default_check": false,
+      "doc": [
+        "自动北俱—点星"
+      ]
+    },
+    {
+      "name": "使用属性卡",
+      "entry": "use_attribute_card",
+      "default_check": false,
+      "doc": [
+        "使用属性卡：打开队伍给队友使用属性卡，需提前组好队"
+      ]
+    },
+    {
+      "name": "心魔试炼",
+      "entry": "inner_demon",
+      "default_check": false,
+      "doc": [
+        "修行至深，难逃心魔侵扰，而心魔之力甚大非比寻常。快去消灭被封印的四界心魔，那里有你的朋友、爱人和仇人!【活动时间】周二、周四、周六全天活动"
+      ]
+    },
+    {
+      "name": "南斗星象",
+      "entry": "nandou",
+      "default_check": false,
+      "doc": [
+        "齐天大圣大闹天宫后，南斗星象移位，天时紊乱，忽昼忽夜，不辨南北，天庭昭告四方，募异士将星象归位，赶快去找太白金星。"
+      ]
+    },
+    {
+      "name": "福泽天下 天降祥瑞",
+      "entry": "祥瑞点击剧情",
+      "default_check": false,
+      "doc": [
+        "福泽天下 天降祥瑞!"
+      ]
+    },
+    {
+      "name": "修罗任务",
+      "entry": "xiuluo",
+      "default_check": false,
+      "doc": [
+        "修罗界中经常有修罗族人离界四处捣乱，灵兽村使者需要在封碑处守护，一时走不开。希望三界少侠能助他一臂之力。"
+      ]
+    },
+    {
+      "name": "自定义动作",
+      "entry": "action_custom",
+      "default_check": false,
+      "doc": [
+        ""
+      ]
+    },
+    {
+      "name": "自定义识别",
+      "entry": "recognition_custom",
+      "default_check": false,
+      "doc": [
+        ""
+      ]
+    }
+  ],
   "InstanceName": "配置 1",
   "AdbDevice": {
     "InfoHandle": {
-      "value": 2235943589072
+      "value": 2704554734672
     },
     "Name": "MuMu安卓设备-MuMuPlayer12 v5",
     "AdbPath": "D:/Common/mumu/MuMuPlayer/nx_main/adb.exe",

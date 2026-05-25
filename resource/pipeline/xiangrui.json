@@ -1,0 +1,356 @@
+{
+    "$__mpe_config_新建Pipeline4": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": 1602,
+                "y": 834,
+                "zoom": 0.74
+            },
+            "filename": "新建Pipeline4",
+            "version": "v1.5.3"
+        }
+    },
+    "找祥瑞": {
+        "next": [
+            "天降祥瑞",
+            "上滑"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1166,
+                "y": -115
+            }
+        }
+    },
+    "置顶追踪": {
+        "max_hit": 1,
+        "recognition": "OCR",
+        "expected": [
+            "置顶追踪"
+        ],
+        "next": [
+            "未置顶"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -67,
+                "y": -242
+            }
+        }
+    },
+    "追踪": {
+        "next": [
+            "任务完成",
+            "宝物休走",
+            "fz_战斗",
+            "置顶追踪",
+            "前往任务"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -443,
+                "y": -123
+            }
+        }
+    },
+    "前往任务": {
+        "max_hit": 1,
+        "recognition": "TemplateMatch",
+        "template": [
+            "fuze/do_task.png"
+        ],
+        "action": "Click",
+        "next": [
+            "追踪"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -177,
+                "y": 17
+            }
+        }
+    },
+    "任务完成": {
+        "recognition": "OCR",
+        "roi": [
+            1046,
+            166,
+            224,
+            115
+        ],
+        "expected": [
+            "完成/10"
+        ],
+        "inverse": true,
+        "action": "Click",
+        "$__mpe_code": {
+            "position": {
+                "x": -56,
+                "y": -1058
+            }
+        }
+    },
+    "fz_战斗": {
+        "desc": "战斗中：识别到battle.png就锁进自锁，打架时其它节点全程不参与",
+        "recognition": "TemplateMatch",
+        "template": [
+            "battle.png"
+        ],
+        "post_delay": 3000,
+        "focus": {
+            "Node.Action.Succeeded": "开始战斗"
+        },
+        "next": [
+            "fz_结束战斗",
+            "fz_战斗"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -67,
+                "y": -527
+            }
+        }
+    },
+    "fz_结束战斗": {
+        "desc": "battle.png消失=战斗结束，回循环",
+        "recognition": "TemplateMatch",
+        "template": [
+            "battle.png"
+        ],
+        "inverse": true,
+        "focus": {
+            "Node.Action.Succeeded": "战斗结束"
+        },
+        "next": [
+            "点击找怪"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 189,
+                "y": -527
+            }
+        }
+    },
+    "点击找怪": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "fuze/xunlu.png"
+        ],
+        "action": "Click",
+        "target_offset": [
+            72,
+            43,
+            -114,
+            -2
+        ],
+        "next": [
+            "追踪"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 462,
+                "y": -442
+            }
+        }
+    },
+    "日常已打开_副本2": {
+        "recognition": "And",
+        "all_of": [
+            {
+                "sub_name": "zhiding",
+                "recognition": "OCR",
+                "expected": "置顶追踪"
+            },
+            {
+                "recognition": "TemplateMatch",
+                "roi": "zhiding",
+                "roi_offset": [
+                    -46,
+                    -8,
+                    -37,
+                    12
+                ],
+                "template": "fuze/nozhiding.png",
+                "threshold": 0.7
+            }
+        ],
+        "box_index": 1,
+        "action": "Click",
+        "$__mpe_code": {
+            "position": {
+                "x": 695,
+                "y": 159
+            }
+        }
+    },
+    "未置顶": {
+        "recognition": "TemplateMatch",
+        "roi": "置顶追踪",
+        "roi_offset": [
+            -53,
+            -14,
+            -23,
+            27
+        ],
+        "template": [
+            "fuze/nozhiding.png"
+        ],
+        "action": "Click",
+        "next": [
+            "追踪"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 255,
+                "y": -199
+            }
+        }
+    },
+    "宝物休走": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "fuze/baowu.png"
+        ],
+        "action": "Click",
+        "next": [
+            "fz_战斗"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -67,
+                "y": -784
+            }
+        }
+    },
+    "打开日常": {
+        "recognition": "And",
+        "all_of": [
+            {
+                "sub_name": "richang",
+                "recognition": "OCR",
+                "expected": "日常"
+            },
+            {
+                "recognition": "TemplateMatch",
+                "roi": "richang",
+                "roi_offset": [
+                    97,
+                    -1,
+                    -8,
+                    0
+                ],
+                "template": "fuze/arrow_down.png",
+                "threshold": 0.7
+            }
+        ],
+        "box_index": 1,
+        "action": "Click",
+        "next": [
+            "祥瑞点击剧情"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1679,
+                "y": 155
+            }
+        }
+    },
+    "祥瑞点击剧情": {
+        "desc": "",
+        "recognition": "TemplateMatch",
+        "template": [
+            "fuze/juqing.png"
+        ],
+        "action": "Click",
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "next": [
+            "日常已打开",
+            "打开日常"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -2012,
+                "y": -58
+            }
+        }
+    },
+    "上滑": {
+        "max_hit": 5,
+        "action": "Swipe",
+        "begin": [
+            272,
+            481,
+            13,
+            14
+        ],
+        "end": [
+            [
+                288,
+                240,
+                14,
+                14
+            ]
+        ],
+        "next": [
+            "找祥瑞"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -811,
+                "y": -83
+            }
+        }
+    },
+    "日常已打开": {
+        "recognition": "And",
+        "all_of": [
+            {
+                "sub_name": "richang",
+                "recognition": "OCR",
+                "expected": "日常"
+            },
+            {
+                "recognition": "TemplateMatch",
+                "roi": "richang",
+                "roi_offset": [
+                    97,
+                    -1,
+                    -8,
+                    0
+                ],
+                "template": "fuze/arrow_top.png",
+                "threshold": 0.7
+            }
+        ],
+        "box_index": 1,
+        "next": [
+            "找祥瑞"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1510,
+                "y": -123
+            }
+        }
+    },
+    "天降祥瑞": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "fuze/xr.png"
+        ],
+        "action": "Click",
+        "next": [
+            "追踪"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -797,
+                "y": -266
+            }
+        }
+    }
+}

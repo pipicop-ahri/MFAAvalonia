@@ -1,0 +1,674 @@
+{
+    "$__mpe_config_ nandou": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": -1063,
+                "y": -2346,
+                "zoom": 0.99
+            },
+            "filename": " nandou",
+            "version": "v1.5.3"
+        }
+    },
+    "南斗循环": {
+        "next": [
+            "通关节点",
+            "战斗触发",
+            "确定挑战_副本9_副本6",
+            "6星挑战_副本15_副本16",
+            "5星",
+            "4星",
+            "3星_副本8",
+            "2星_副本4",
+            "1星",
+            "nd触发",
+            "nd_"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1859,
+                "y": 2773
+            }
+        }
+    },
+    "nd_xh": {
+        "$__mpe_code": {
+            "position": {
+                "x": 1859,
+                "y": 2773
+            }
+        }
+    },
+    "nd_": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "nd_level.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 3252,
+                "y": 2678
+            }
+        }
+    },
+    "nd_级别_副本16_副本2": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "nd_level.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 3252,
+                "y": 2678
+            }
+        }
+    },
+    "1星": {
+        "desc": "",
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "recognition": "TemplateMatch",
+                        "template": "nd_1.png"
+                    },
+                    {
+                        "recognition": "TemplateMatch",
+                        "template": "nd_1.1.png"
+                    }
+                ],
+                "box_index": 1
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    36,
+                    -57,
+                    -67,
+                    -14
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2656,
+                "y": 2653
+            }
+        }
+    },
+    "1星_副本3": {
+        "desc": "",
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "recognition": "TemplateMatch",
+                        "template": "nd_1.png"
+                    },
+                    {
+                        "recognition": "TemplateMatch",
+                        "template": "nd_1.1.png"
+                    }
+                ],
+                "box_index": 1
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    36,
+                    -57,
+                    -67,
+                    -14
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 2656,
+                "y": 2653
+            }
+        }
+    },
+    "5星": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "ndi5.png"
+                ],
+                "green_mask": false
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    401,
+                    186,
+                    -130,
+                    -17
+                ]
+            }
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2276,
+                "y": 3094
+            }
+        }
+    },
+    "nd_南斗_is_over": {
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "sub_name": "icon",
+                        "recognition": "TemplateMatch",
+                        "template": "xiuluo.png",
+                        "threshold": 0.7
+                    },
+                    {
+                        "recognition": "TemplateMatch",
+                        "roi": "icon",
+                        "roi_offset": [
+                            275,
+                            58,
+                            15,
+                            31
+                        ],
+                        "template": "is_ok.png"
+                    }
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "南斗已完成"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 1513,
+                "y": 2630
+            }
+        }
+    },
+    "nd_检索任务": {
+        "focus": {
+            "Node.Action.Starting": "进入检索循环"
+        },
+        "$note": "检索分流:先找可做任务→去做;否则判断是否到底全完成→结束;都不是则上滑再找。异常总入口与未知页面兜底放最后",
+        "next": [
+            "nd_南斗_is_over",
+            "nd_发现_南斗",
+            "nd_上滑继续检索",
+            "nd_task"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1175,
+                "y": 2909
+            }
+        }
+    },
+    "nd_上滑继续检索": {
+        "max_hit": 8,
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    526,
+                    451,
+                    0,
+                    3
+                ],
+                "end": [
+                    [
+                        575,
+                        218,
+                        1,
+                        1
+                    ]
+                ],
+                "duration": 300
+            }
+        },
+        "post_delay": 2000,
+        "focus": {
+            "Node.Action.Starting": "上滑列表"
+        },
+        "next": [
+            "nd_检索任务"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1513,
+                "y": 3118
+            }
+        }
+    },
+    "nd_发现_南斗": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "nd.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    273,
+                    61,
+                    -24,
+                    -13
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "发现_南斗"
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1507,
+                "y": 2863
+            }
+        }
+    },
+    "nd_active_daily": {
+        "desc": "激活日常任务栏",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "task_panel.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    352,
+                    -16,
+                    23,
+                    -36
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "开始激活日常任务栏"
+        },
+        "next": [
+            "nd_检索任务"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 878,
+                "y": 2896
+            }
+        }
+    },
+    "nandou": {
+        "focus": {
+            "Node.Action.Starting": "南斗任务启动"
+        },
+        "next": [
+            "nd_task",
+            "nd_active_daily"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 507,
+                "y": 2962
+            }
+        }
+    },
+    "nd_task": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "huodong.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Succeeded": "检索活动按钮"
+        },
+        "next": [
+            "nd_active_daily"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 901,
+                "y": 2671
+            }
+        }
+    },
+    "4星": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "ndi4.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    458,
+                    174,
+                    -135,
+                    -25
+                ]
+            }
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2276,
+                "y": 3330
+            }
+        }
+    },
+    "通关节点": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1043,
+                    169,
+                    224,
+                    167
+                ],
+                "expected": [
+                    "南斗星象已完成"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 2276,
+                "y": 1887
+            }
+        }
+    },
+    "2星_副本4": {
+        "desc": "",
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "recognition": "TemplateMatch",
+                        "template": "nd_2.png"
+                    },
+                    {
+                        "recognition": "TemplateMatch",
+                        "template": "nd_2.2.png"
+                    }
+                ],
+                "box_index": 1
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    34,
+                    -61,
+                    -71,
+                    -10
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2656,
+                "y": 2986
+            }
+        }
+    },
+    "确定挑战_副本9_副本6": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "true_pk.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1000,
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2276,
+                "y": 2390
+            }
+        }
+    },
+    "nd触发": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "nd_do.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 5000,
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2967,
+                "y": 2671
+            }
+        }
+    },
+    "3星_副本8": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "nd3_name.png"
+                ],
+                "threshold": [
+                    0.9
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    352,
+                    143,
+                    -80,
+                    -12
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": ""
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2650,
+                "y": 3330
+            }
+        }
+    },
+    "战斗触发": {
+        "desc": "战斗中：识别到battle.png就锁进自锁，打架时其它节点全程不参与",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "post_delay": 3000,
+        "focus": {
+            "Node.Action.Succeeded": "开始战斗"
+        },
+        "next": [
+            "战斗自锁",
+            "战斗触发"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2276,
+                "y": 2093
+            }
+        }
+    },
+    "6星挑战_副本15_副本16": {
+        "desc": "6星：挑战按钮。max_hit=3 表示最多触发3次，第4次起不再命中，流程将漏过它去匹配通关",
+        "max_hit": 3,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "nd6_name.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    508,
+                    325,
+                    -76,
+                    -15
+                ]
+            }
+        },
+        "post_delay": 1000,
+        "focus": {
+            "Node.Action.Succeeded": "6星挑战"
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2276,
+                "y": 2711
+            }
+        }
+    },
+    "战斗自锁": {
+        "desc": "battle.png消失=战斗结束，回循环",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "focus": {
+            "Node.Action.Succeeded": "战斗结束"
+        },
+        "next": [
+            "南斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2530,
+                "y": 2093
+            }
+        }
+    }
+}

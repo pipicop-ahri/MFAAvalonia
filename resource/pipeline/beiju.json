@@ -1,0 +1,447 @@
+{
+    "$__mpe_config_新建Pipeline3": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": 4391,
+                "y": 1834,
+                "zoom": 0.55
+            },
+            "filename": "新建Pipeline3",
+            "version": "v1.5.3"
+        }
+    },
+    "北俱": {
+        "next": [
+            "是否在北俱",
+            "前往北俱",
+            "北俱冰原",
+            "地图",
+            "背包找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -7051,
+                "y": -1578
+            }
+        }
+    },
+    "地图": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/map.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6639,
+                "y": -1287
+            }
+        }
+    },
+    "北俱冰原": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/beiju.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6639,
+                "y": -1459
+            }
+        }
+    },
+    "前往北俱": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    704,
+                    173,
+                    82,
+                    52
+                ],
+                "expected": [
+                    "冰小怪"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    97,
+                    228,
+                    -5,
+                    45
+                ]
+            }
+        },
+        "next": [
+            "关闭北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6665,
+                "y": -1707
+            }
+        }
+    },
+    "关闭北俱": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1083,
+                    71,
+                    19,
+                    10
+                ]
+            }
+        },
+        "next": [
+            "打开背包"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6368,
+                "y": -1707
+            }
+        }
+    },
+    "是否在北俱": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/beiju_tittle.png"
+                ]
+            }
+        },
+        "next": [
+            "打开背包"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6639,
+                "y": -1906
+            }
+        }
+    },
+    "打开背包": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/package.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6068,
+                "y": -1891
+            }
+        }
+    },
+    "背包找香": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/bag.png"
+                ]
+            }
+        },
+        "next": [
+            "循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6525,
+                "y": -2106
+            }
+        }
+    },
+    "循环找香": {
+        "next": [
+            "巡逻",
+            "确定用香",
+            "使用香",
+            "找到香了",
+            "上滑找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6186,
+                "y": -2090
+            }
+        }
+    },
+    "找到香了": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/xiang.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5811,
+                "y": -2328
+            }
+        }
+    },
+    "上滑找香": {
+        "max_hit": 5,
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    830,
+                    495,
+                    24,
+                    24
+                ],
+                "end": [
+                    [
+                        828,
+                        207,
+                        21,
+                        16
+                    ]
+                ]
+            }
+        },
+        "next": [
+            "循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5818,
+                "y": -2113
+            }
+        }
+    },
+    "使用香": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/use.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6214,
+                "y": -2548
+            }
+        }
+    },
+    "确定用香": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/true.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "关闭背包"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6214,
+                "y": -2717
+            }
+        }
+    },
+    "关闭背包": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1104,
+                    85,
+                    17,
+                    11
+                ]
+            }
+        },
+        "next": [
+            "循环找香"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5919,
+                "y": -2716
+            }
+        }
+    },
+    "巡逻": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/xunluo.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "巡逻循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6214,
+                "y": -2905
+            }
+        }
+    },
+    "巡逻循环": {
+        "next": [
+            "北俱战斗中",
+            "巡逻中",
+            "巡逻结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5900,
+                "y": -2970
+            }
+        }
+    },
+    "巡逻中": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/xunluo.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 10000,
+        "next": [
+            "巡逻循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5540,
+                "y": -3029
+            }
+        }
+    },
+    "巡逻结束": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/xunluo.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "next": [
+            "打开背包"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5540,
+                "y": -2814
+            }
+        }
+    },
+    "北俱战斗中": {
+        "desc": "战斗中：识别到battle.png就锁进自锁，打架时其它节点全程不参与",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "post_delay": 10000,
+        "next": [
+            "北俱战斗结束",
+            "北俱战斗中"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5540,
+                "y": -3305
+            }
+        }
+    },
+    "北俱战斗结束": {
+        "desc": "battle.png消失=战斗结束，回循环",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "next": [
+            "巡逻循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5210,
+                "y": -3388
+            }
+        }
+    }
+}

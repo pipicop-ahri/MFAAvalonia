@@ -1,0 +1,14 @@
+{
+    "action_custom": {
+        "next": ["识别大话西游"]
+    },
+
+    "识别大话西游": {
+        "recognition": "OCR",
+        "expected": ["大话西游"],
+        "action": "Custom",
+        "custom_action": "OpenExplorer",
+        "focus": "识别到「大话西游」→ Agent 打开资源管理器",
+        "next": []
+    }
+}

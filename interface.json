@@ -1,33 +1,81 @@
 {
-  "name": "Debug",
-  "version": "1.0",
-  "resource": [
+  "name": "我的MAA项目",
+  "version": "1.0.0",
+  "agent": {
+    "child_exec": "python",
+    "child_args": [
+      "agent/main.py"
+    ]
+  },
+  "task": [
     {
-      "name": "默认",
-      "path": [
-        "{PROJECT_DIR}/resource/base"
-      ],
-      "DisplayName": "",
-      "DisplayDescription": ""
+      "name": "200环",
+      "entry": "start_200",
+      "doc": "200环"
+    },
+    {
+      "name": "无限北俱",
+      "entry": "北俱",
+      "doc": "无限北俱"
+    },
+    {
+      "name": "点星",
+      "entry": "点星",
+      "doc": "需手动到达兰若寺开始，目前只技能17，18随机点星"
+    },
+    {
+      "name": "北俱+点星",
+      "entry": "bjdx_北俱",
+      "doc": "自动北俱—点星"
+    },
+    {
+      "name": "使用属性卡",
+      "entry": "use_attribute_card",
+      "doc": "使用属性卡：打开队伍给队友使用属性卡，需提前组好队"
+    },
+    {
+      "name": "心魔试炼",
+      "entry": "inner_demon",
+      "doc": "修行至深，难逃心魔侵扰，而心魔之力甚大非比寻常。快去消灭被封印的四界心魔，那里有你的朋友、爱人和仇人!【活动时间】周二、周四、周六全天活动"
+    },
+    {
+      "name": "南斗星象",
+      "entry": "nandou",
+      "doc": "齐天大圣大闹天宫后，南斗星象移位，天时紊乱，忽昼忽夜，不辨南北，天庭昭告四方，募异士将星象归位，赶快去找太白金星。"
+    },
+    {
+      "name": "福泽天下 天降祥瑞",
+      "entry": "祥瑞点击剧情",
+      "doc": "福泽天下 天降祥瑞!"
+    },
+    {
+      "name": "修罗任务",
+      "entry": "xiuluo",
+      "doc": "修罗界中经常有修罗族人离界四处捣乱，灵兽村使者需要在封碑处守护，一时走不开。希望三界少侠能助他一臂之力。"
+    },
+    {
+      "name": "自定义动作",
+      "entry": "action_custom",
+      "doc": ""
+    },
+    {
+      "name": "自定义识别",
+      "entry": "recognition_custom",
+      "doc": ""
     }
   ],
-  "task": [],
-  "option": {
-    "测试": {
-      "cases": [
-        {
-          "name": "测试1",
-          "pipeline_override": {},
-          "DisplayName": "",
-          "DisplayDescription": ""
-        },
-        {
-          "name": "测试2",
-          "pipeline_override": {},
-          "DisplayName": "",
-          "DisplayDescription": ""
-        }
+  "resource": [
+    {
+      "name": "默认资源",
+      "path": [
+        "{PROJECT_DIR}/resource"
       ]
     }
-  }
+  ],
+  "controller": [
+    {
+      "name": "ADB 控制器",
+      "type": "Adb"
+    }
+  ]
 }

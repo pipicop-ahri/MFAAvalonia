@@ -1,0 +1,582 @@
+{
+    "$__mpe_config_新建Pipeline4": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "savedViewport": {
+                "x": -1416,
+                "y": -1967,
+                "zoom": 0.86
+            },
+            "filename": "新建Pipeline4",
+            "version": "v1.5.3"
+        }
+    },
+    "点击挑战": {
+        "desc": "",
+        "max_hit": 3,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    840,
+                    408,
+                    371,
+                    160
+                ],
+                "expected": [
+                    "挑战"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Starting": "step3-准备挑战"
+        },
+        "next": [
+            "战斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2850,
+                "y": 2662
+            }
+        }
+    },
+    "心魔17结束": {
+        "desc": "",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "十七炼"
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "step1-检索到17，准备结束"
+        },
+        "next": [
+            "停止寻路"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2850,
+                "y": 2421
+            }
+        }
+    },
+    "点击图标": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "inner_demon_icon.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Starting": "点击心魔图标"
+        },
+        "next": [
+            "退出循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 4075,
+                "y": 2750
+            }
+        }
+    },
+    "奖励页面": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "view_reward.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    4,
+                    446,
+                    -9,
+                    5
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "奖励页面"
+        },
+        "next": [
+            "退出循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 4054,
+                "y": 2405
+            }
+        }
+    },
+    "确定离开": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "true.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Starting": "离开"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 4042,
+                "y": 2135
+            }
+        }
+    },
+    "检索任务": {
+        "focus": {
+            "Node.Action.Starting": "进入检索循环"
+        },
+        "$note": "检索分流:先找可做任务→去做;否则判断是否到底全完成→结束;都不是则上滑再找。异常总入口与未知页面兜底放最后",
+        "next": [
+            "task1_副本2",
+            "发现_心魔",
+            "上滑继续检索"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1175,
+                "y": 2909
+            }
+        }
+    },
+    "上滑继续检索": {
+        "max_hit": 8,
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    526,
+                    451,
+                    0,
+                    3
+                ],
+                "end": [
+                    [
+                        575,
+                        218,
+                        1,
+                        1
+                    ]
+                ],
+                "duration": 300
+            }
+        },
+        "post_delay": 2000,
+        "focus": {
+            "Node.Action.Starting": "上滑列表"
+        },
+        "next": [
+            "检索任务"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1513,
+                "y": 3118
+            }
+        }
+    },
+    "发现_心魔": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "xinmo.png"
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "检索心魔"
+        },
+        "next": [
+            "前往循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1513,
+                "y": 2909
+            }
+        }
+    },
+    "前往_心魔": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "xinmo.png"
+                ]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    252,
+                    54,
+                    8,
+                    2
+                ]
+            }
+        },
+        "post_delay": 500,
+        "focus": {
+            "Node.Action.Starting": "前往心魔"
+        },
+        "next": [
+            "前往循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2188,
+                "y": 2985
+            }
+        }
+    },
+    "active_daily": {
+        "desc": "激活日常任务栏",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "task_panel.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    352,
+                    -16,
+                    23,
+                    -36
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "开始激活日常任务栏"
+        },
+        "next": [
+            "检索任务"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 878,
+                "y": 2896
+            }
+        }
+    },
+    "xinmo_is_over": {
+        "desc": "心魔已完成",
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "sub_name": "icon",
+                        "recognition": "TemplateMatch",
+                        "template": "xinmo.png",
+                        "threshold": 0.7
+                    },
+                    {
+                        "recognition": "TemplateMatch",
+                        "roi": "icon",
+                        "roi_offset": [
+                            275,
+                            58,
+                            15,
+                            31
+                        ],
+                        "template": "is_ok.png"
+                    }
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "心魔已完成"
+        },
+        "next": [
+            "前往循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2180,
+                "y": 2427
+            }
+        }
+    },
+    "wait_xinmo_panel": {
+        "desc": "前往，等待心魔面板出现",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "xinmo_do.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    1,
+                    180,
+                    -1,
+                    -1
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "前往，等待心魔面板出现"
+        },
+        "next": [
+            "战斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2180,
+                "y": 2694
+            }
+        }
+    },
+    "click_task": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "click_xinmo.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 3000,
+        "focus": {
+            "Node.Action.Starting": "触发寻路"
+        },
+        "next": [
+            "战斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2850,
+                "y": 2977
+            }
+        }
+    },
+    "停止寻路": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    488,
+                    327,
+                    1,
+                    1
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "停止寻路"
+        },
+        "next": [
+            "退出循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 3273,
+                "y": 2383
+            }
+        }
+    },
+    "战斗循环": {
+        "next": [
+            "心魔17结束",
+            "点击挑战",
+            "click_task",
+            "战斗中",
+            "战斗等待"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2488,
+                "y": 2750
+            }
+        }
+    },
+    "退出循环": {
+        "next": [
+            "确定离开",
+            "奖励页面",
+            "点击图标"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 3734,
+                "y": 2437
+            }
+        }
+    },
+    "inner_demon": {
+        "next": [
+            "task1_副本2",
+            "active_daily"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 507,
+                "y": 2962
+            }
+        }
+    },
+    "task1_副本2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "huodong.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Succeeded": "检索活动按钮"
+        },
+        "next": [
+            "active_daily"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1041,
+                "y": 2576
+            }
+        }
+    },
+    "前往循环": {
+        "next": [
+            "xinmo_is_over",
+            "wait_xinmo_panel",
+            "前往_心魔"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 1817,
+                "y": 2962
+            }
+        }
+    },
+    "战斗中": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "开始战斗"
+        },
+        "next": [
+            "自锁-战斗结束",
+            "战斗中"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2878,
+                "y": 3264
+            }
+        }
+    },
+    "自锁-战斗结束": {
+        "desc": "",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "focus": {
+            "Node.Action.Succeeded": "战斗结束"
+        },
+        "next": [
+            "战斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 3195,
+                "y": 3271
+            }
+        }
+    },
+    "战斗等待": {
+        "desc": "",
+        "next": [
+            "战斗循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 2861,
+                "y": 3624
+            }
+        }
+    },
+    "task1_副本1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "huodong.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "focus": {
+            "Node.Action.Succeeded": "检索活动按钮"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 1041,
+                "y": 2576
+            }
+        }
+    }
+}
