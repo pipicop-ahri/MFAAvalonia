@@ -1,0 +1,21 @@
+{
+  "CurrentControllerName": "Adb",
+  "Resource": "默认",
+  "CurrentTasks": [],
+  "TaskItems": [],
+  "InstanceName": "配置 1",
+  "AdbDevice": {
+    "InfoHandle": {
+      "value": 2235943589072
+    },
+    "Name": "MuMu安卓设备-MuMuPlayer12 v5",
+    "AdbPath": "D:/Common/mumu/MuMuPlayer/nx_main/adb.exe",
+    "AdbSerial": "127.0.0.1:16384",
+    "ScreencapMethods": 64,
+    "InputMethods": 18446744073709551607,
+    "Config": "{\"extras\":{\"mumu\":{\"enable\":true,\"index\":0,\"path\":\"D:/Common/mumu/MuMuPlayer\"}}}",
+    "AgentPath": "./MaaAgentBinary"
+  },
+  "CurrentController": 2,
+  "ResourceOptionItems": {}
+}

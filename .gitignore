@@ -1,0 +1,20 @@
+# 编译输出
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.deps.json
+*.runtimeconfig.json
+
+# 日志和调试产物
+logs/
+debug/
+
+# IDE 配置
+.idea/
+.vs/
+.vscode/
+
+# 压缩包和大文件
+*.zip
