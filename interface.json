@@ -27,7 +27,7 @@
     {
       "name": "北俱+点星",
       "entry": "bjdx_北俱",
-      "doc": "自动北俱—点星；可在选项中调整点星提前分钟（便于测试）",
+      "doc": "自动北俱—点星；点星时段内直接去点星，否则先挂北俱。点星提前 1–28 分钟可调",
       "option": [
         "点星时间设置"
       ]
@@ -86,17 +86,28 @@
     "点星时间设置": {
       "type": "input",
       "label": "点星时间",
-      "description": "每整点/半点刷星。点星提前=提前几分钟停巡逻去兰若寺（默认 3 → :27–:30、:57–:00）。",
+      "description": "每整点/半点刷星。点星提前 1–28 分钟：进入该窗口则直接去点星，否则先北俱巡逻（默认 3 → :27–:30、:57–:00）。",
       "inputs": [
         {
           "name": "点星提前",
           "label": "点星提前(分钟)",
           "default": "3",
           "pipeline_type": "int",
-          "verify": "^([1-9]|10|11|12|13|14|15)$"
+          "verify": "^([1-9]|1[0-9]|2[0-8])$"
         }
       ],
       "pipeline_override": {
+        "bjdx_入口路由": {
+          "action": {
+            "type": "Custom",
+            "param": {
+              "custom_action": "StarEntryRouter",
+              "custom_action_param": {
+                "minutes_before": "{点星提前}"
+              }
+            }
+          }
+        },
         "bjdx_点星调度": {
           "action": {
             "type": "Custom",

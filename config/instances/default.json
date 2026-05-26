@@ -12,13 +12,14 @@
     "福泽天下 天降祥瑞<|||>祥瑞点击剧情",
     "修罗任务<|||>xiuluo",
     "自定义动作<|||>action_custom",
-    "自定义识别<|||>recognition_custom"
+    "自定义识别<|||>recognition_custom",
+    "北俱+点星<|||>bjdx_任务入口"
   ],
   "TaskItems": [
     {
       "name": "200环",
       "entry": "start_200",
-      "default_check": false,
+      "default_check": true,
       "doc": [
         "200环"
       ]
@@ -42,17 +43,16 @@
     {
       "name": "北俱+点星",
       "entry": "bjdx_北俱",
-      "default_check": true,
+      "default_check": false,
       "doc": [
-        "自动北俱—点星；可在选项中调整点星提前分钟（便于测试）"
+        "自动北俱—点星；点星时段内直接去点星，否则先挂北俱。点星提前 1–28 分钟可调"
       ],
       "option": [
         {
           "name": "点星时间设置",
           "index": 0,
           "data": {
-            "点星提前": "6",
-            "预备提前": "1"
+            "点星提前": "5"
           }
         }
       ]
@@ -117,7 +117,7 @@
   "InstanceName": "配置 1",
   "AdbDevice": {
     "InfoHandle": {
-      "value": 2354631745920
+      "value": 2603098579600
     },
     "Name": "MuMu安卓设备-MuMuPlayer12 v5",
     "AdbPath": "D:/Common/mumu/MuMuPlayer/nx_main/adb.exe",

@@ -399,8 +399,92 @@
             "Node.Action.Succeeded": "[bjdx][点星] 准备点星界面"
         }
     },
+    "bjdx_点星直链": {
+        "desc": "点星时段：仅在巡逻中停巡逻，否则直接去兰若寺",
+        "next": [
+            "bjdx_点星行动"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6900,
+                "y": -900
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][入口] 点星时段，进入点星流程"
+        }
+    },
+    "bjdx_点星行动": {
+        "desc": "识别到巡逻小地图才停巡逻，否则跳过直接去兰若寺",
+        "next": [
+            "bjdx_巡逻中停巡逻",
+            "bjdx_前往兰若寺"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6750,
+                "y": -900
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 选择去兰若寺或停巡逻"
+        }
+    },
+    "bjdx_巡逻中停巡逻": {
+        "desc": "仅巡逻中（little_map）才进入停巡逻链",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/little_map.png"
+                ]
+            }
+        },
+        "next": [
+            "bjdx_点星停巡逻入口"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -6750,
+                "y": -780
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 巡逻中，先停巡逻"
+        }
+    },
+    "bjdx_入口路由": {
+        "desc": "Agent StarEntryRouter：点星时段→点星直链，否则→是否在北俱",
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "StarEntryRouter",
+                "custom_action_param": {
+                    "minutes_before": 3
+                }
+            }
+        },
+        "next": [
+            "bjdx_是否在北俱",
+            "bjdx_点星直链"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -7200,
+                "y": -776
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "[bjdx][入口] 判断点星时段",
+            "Node.Action.Succeeded": "[bjdx][入口] 入口路由完成"
+        }
+    },
     "bjdx_北俱": {
         "next": [
+            "bjdx_入口路由",
             "bjdx_是否在北俱",
             "bjdx_前往北俱",
             "bjdx_北俱冰原",
@@ -415,7 +499,7 @@
         },
         "focus": {
             "Node.Action.Starting": "[bjdx][入口] 任务开始",
-            "Node.Action.Succeeded": "[bjdx][入口] 进入北俱准备"
+            "Node.Action.Succeeded": "[bjdx][北俱] 进入北俱流程"
         }
     },
     "bjdx_地图": {
@@ -824,7 +908,7 @@
     },
     "bjdx_点星时段_停巡逻": {
         "next": [
-            "bjdx_点星停巡逻入口"
+            "bjdx_点星行动"
         ],
         "$__mpe_code": {
             "position": {
@@ -833,7 +917,7 @@
             }
         },
         "focus": {
-            "Node.Action.Succeeded": "[bjdx][调度] 点星时段，停巡逻"
+            "Node.Action.Succeeded": "[bjdx][调度] 点星时段，去点星"
         }
     },
     "bjdx_点星停巡逻入口": {
@@ -1260,7 +1344,7 @@
             "bjdx_确定停止巡逻"
         ],
         "on_error": [
-            "bjdx_点星停巡逻入口"
+            "bjdx_前往兰若寺"
         ],
         "$__mpe_code": {
             "position": {

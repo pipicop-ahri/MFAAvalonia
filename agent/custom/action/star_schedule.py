@@ -20,6 +20,8 @@ from custom.star_schedule_config import (
 )
 
 NODE_STAR_FLOW = "bjdx_点星时段_停巡逻"
+NODE_STAR_DIRECT = "bjdx_点星直链"
+NODE_BEIJU_START = "bjdx_是否在北俱"
 NODE_PATROL_LOOP = "bjdx_巡逻循环"
 NODE_FIND_STAR = "bjdx_找星"
 NODE_STAR_END = "bjdx_点星结束"
@@ -27,6 +29,32 @@ NODE_STAR_END = "bjdx_点星结束"
 
 def _log(msg: str) -> None:
     print(msg, flush=True)
+
+
+@AgentServer.custom_action("StarEntryRouter")
+class StarEntryRouter(CustomAction):
+    """任务入口：点星窗口内直接去点星，否则先挂北俱。"""
+
+    def run(self, context, argv) -> bool:
+        try:
+            cfg = load_config(context, argv)
+            now = datetime.now()
+            if is_star_window(now, cfg):
+                nxt = [NODE_STAR_DIRECT]
+                hint = f"点星时段，直接去点星(提前{cfg.minutes_before}分)"
+            else:
+                nxt = [NODE_BEIJU_START]
+                hint = "非点星时段，先挂北俱"
+
+            _log(
+                f"[bjdx][入口] {now.strftime('%H:%M:%S')} {hint} -> {nxt}"
+            )
+            context.override_next(argv.node_name, nxt)
+            return True
+        except Exception:
+            _log("[bjdx][入口] StarEntryRouter 异常:")
+            traceback.print_exc()
+            return False
 
 
 @AgentServer.custom_action("StarScheduleRouter")

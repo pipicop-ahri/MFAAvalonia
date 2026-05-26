@@ -12,8 +12,8 @@
   "UI.MainWindow.Maximized": "false",
   "UI.MainWindow.Width": "1920",
   "UI.MainWindow.Height": "1023",
-  "UI.MainWindow.PositionX": "-32000",
-  "UI.MainWindow.PositionY": "-32000",
+  "UI.MainWindow.PositionX": "395",
+  "UI.MainWindow.PositionY": "279",
   "UI.DashboardCardGrid.Layout.TaskQueueView": [
     {
       "Id": "settings",
