@@ -12,7 +12,7 @@
             "version": "v1.5.3"
         }
     },
-    "新建节点1": {
+    "bjdx_停巡逻后分流": {
         "next": [
             "bjdx_北俱战斗中_副本3",
             "bjdx_前往兰若寺"
@@ -22,37 +22,9 @@
                 "x": -5087,
                 "y": -2196
             }
-        }
-    },
-    "bjdx_战斗时间": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "star/8.1.png",
-                    "star/8.2.png",
-                    "star/9.1.png",
-                    "star/9.2.png",
-                    "star/7.png",
-                    "star/4.z.png",
-                    "star/4.j.png"
-                ],
-                "threshold": [
-                    0.9
-                ]
-            }
         },
-        "timeout": 40000,
-        "next": [
-            "bjdx_确定停止巡逻",
-            "bjdx11_停止巡逻",
-            "新建节点28"
-        ],
-        "$__mpe_code": {
-            "position": {
-                "x": -5694,
-                "y": -2676
-            }
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][分流] 停巡逻后：遇战或去兰若寺"
         }
     },
     "bjdx_关闭地图": {
@@ -76,6 +48,9 @@
                 "x": -5008,
                 "y": -1426
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 关闭地图"
         }
     },
     "bjdx_战斗点星": {
@@ -89,9 +64,6 @@
             }
         },
         "post_delay": 3000,
-        "focus": {
-            "Node.Action.Succeeded": "开始战斗"
-        },
         "next": [
             "bjdx_点星战斗2",
             "bjdx_战斗点星"
@@ -101,6 +73,9 @@
                 "x": -1129,
                 "y": -1403
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星战] 点星战斗开始"
         }
     },
     "bjdx_点星战斗2": {
@@ -114,9 +89,6 @@
             }
         },
         "inverse": true,
-        "focus": {
-            "Node.Action.Succeeded": "战斗结束"
-        },
         "next": [
             "bjdx_点星结束"
         ],
@@ -125,16 +97,25 @@
                 "x": -775,
                 "y": -1312
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星战] 点星战斗结束"
         }
     },
     "bjdx_找星": {
         "max_hit": 5,
         "recognition": {
-            "type": "TemplateMatch",
+            "type": "OCR",
             "param": {
-                "template": [
-                    "star/17.png",
-                    "182.png"
+                "expected": [
+                    "地杰星",
+                    "地飞星",
+                    "地狗星",
+                    "地平星",
+                    "地雄星",
+                    "地威星",
+                    "地英星",
+                    "地奇星"
                 ]
             }
         },
@@ -142,10 +123,10 @@
             "type": "Click",
             "param": {
                 "target_offset": [
-                    19,
-                    -125,
-                    -50,
-                    11
+                    27,
+                    -136,
+                    -52,
+                    64
                 ]
             }
         },
@@ -162,6 +143,9 @@
                 "x": -2736,
                 "y": -1121
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] OCR 点击地煞星"
         }
     },
     "bjdx_确定": {
@@ -184,9 +168,6 @@
             "type": "Click"
         },
         "post_delay": 1000,
-        "focus": {
-            "Node.Action.Succeeded": "找到星了"
-        },
         "next": [
             "bjdx_挑战选择中"
         ],
@@ -198,34 +179,23 @@
                 "x": -2411,
                 "y": -1257
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 命中挑战对话"
         }
     },
     "bjdx_找星模式": {
-        "focus": {
-            "Node.Action.Succeeded": "开始找星中"
-        },
         "next": [
-            "bjdx_找星",
-            "bjdx_重置"
+            "bjdx_找星"
         ],
         "$__mpe_code": {
             "position": {
                 "x": -3046,
                 "y": -1041
             }
-        }
-    },
-    "bjdx_重置": {
-        "pre_delay": 0,
-        "post_delay": 0,
-        "next": [
-            "bjdx_找星模式"
-        ],
-        "$__mpe_code": {
-            "position": {
-                "x": -2758,
-                "y": -841
-            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 开始找星"
         }
     },
     "bjdx_挑战选择中": {
@@ -249,6 +219,9 @@
                 "x": -2130,
                 "y": -1440
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 挑战选择完成"
         }
     },
     "bjdx_相机": {
@@ -321,6 +294,9 @@
                 "x": -3327,
                 "y": -1189
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 进入点星模式"
         }
     },
     "bjdx_进入隐藏细节": {
@@ -344,6 +320,9 @@
                 "x": -3310,
                 "y": -925
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 隐藏地图细节"
         }
     },
     "bjdx_前置循环": {
@@ -360,9 +339,6 @@
         }
     },
     "bjdx_点星": {
-        "focus": {
-            "Node.Action.Succeeded": "进入点星模式"
-        },
         "next": [
             "bjdx_相机",
             "bjdx_前置循环"
@@ -372,12 +348,12 @@
                 "x": -4502,
                 "y": -1001
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 准备点星界面"
         }
     },
     "bjdx_北俱": {
-        "focus": {
-            "Node.Action.Succeeded": "开始北俱+点星"
-        },
         "next": [
             "bjdx_是否在北俱",
             "bjdx_前往北俱",
@@ -390,6 +366,10 @@
                 "x": -7085,
                 "y": -776
             }
+        },
+        "focus": {
+            "Node.Action.Starting": "[bjdx][入口] 任务开始",
+            "Node.Action.Succeeded": "[bjdx][入口] 进入北俱准备"
         }
     },
     "bjdx_地图": {
@@ -412,6 +392,9 @@
                 "x": -7066,
                 "y": -1131
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 打开世界地图"
         }
     },
     "bjdx_北俱冰原": {
@@ -434,6 +417,9 @@
                 "x": -7066,
                 "y": -1303
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 选择北俱冰原"
         }
     },
     "bjdx_前往北俱": {
@@ -470,6 +456,9 @@
                 "x": -7079,
                 "y": -1551
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 传送到北俱冰原"
         }
     },
     "bjdx_关闭北俱": {
@@ -511,6 +500,9 @@
                 "x": -7066,
                 "y": -1750
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 已在北俱冰原"
         }
     },
     "bjdx_重叠了": {
@@ -537,6 +529,9 @@
                 "x": -2350,
                 "y": -685
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 星名重叠，关闭重叠框"
         }
     },
     "bjdx_关闭重叠": {
@@ -581,6 +576,9 @@
                 "x": -1649,
                 "y": -834
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 关闭点星模式"
         }
     },
     "bjdx_我要观点": {
@@ -620,21 +618,86 @@
                 "x": -2350,
                 "y": -925
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 误入观战，改点挑战"
         }
     },
     "bjdx_点星结束": {
-        "focus": {
-            "Node.Action.Succeeded": "结束点星"
-        },
         "next": [
-            "bjdx_战斗点星",
-            "bjdx_北俱"
+            "bjdx_北俱",
+            "bjdx_战斗点星"
         ],
         "$__mpe_code": {
             "position": {
                 "x": -1465,
                 "y": -1251
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 点星流程结束，回北俱"
+        }
+    },
+    "bjdx_点星调度": {
+        "desc": "Agent StarScheduleRouter：:27-:30 / :57-:00 停巡逻点星",
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "StarScheduleRouter"
+            }
+        },
+        "next": [],
+        "$__mpe_code": {
+            "position": {
+                "x": -5694,
+                "y": -2480
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "[bjdx][调度] 检查点星时段",
+            "Node.Action.Succeeded": "[bjdx][调度] Agent 路由完成"
+        }
+    },
+    "bjdx_等待点星": {
+        "desc": "Agent WaitUntilNextStar：:25-:26 / :55-:56 等到点星时段",
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "WaitUntilNextStar"
+            }
+        },
+        "next": [
+            "bjdx_点星时段_停巡逻"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5694,
+                "y": -2320
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "[bjdx][调度] 预备窗口，等待 :27/:57",
+            "Node.Action.Succeeded": "[bjdx][调度] 进入点星时段"
+        }
+    },
+    "bjdx_点星时段_停巡逻": {
+        "next": [
+            "bjdx11_停止巡逻"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5353,
+                "y": -2480
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][调度] 点星时段，停巡逻"
         }
     },
     "bjdx_打开背包": {
@@ -668,9 +731,6 @@
                 ]
             }
         },
-        "focus": {
-            "Node.Action.Succeeded": "背包找香"
-        },
         "next": [
             "bjdx_循环找香"
         ],
@@ -679,6 +739,9 @@
                 "x": -6952,
                 "y": -1950
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 背包内查找引路香"
         }
     },
     "bjdx_循环找香": {
@@ -716,6 +779,9 @@
                 "x": -6271,
                 "y": -2185
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 找到引路香"
         }
     },
     "bjdx_上滑找香": {
@@ -769,6 +835,9 @@
                 "x": -6284,
                 "y": -2350
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 点击使用引路香"
         }
     },
     "bjdx_确定用香": {
@@ -791,6 +860,9 @@
                 "x": -6284,
                 "y": -2519
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 确认使用引路香，准备巡逻"
         }
     },
     "bjdx_关闭背包": {
@@ -827,9 +899,6 @@
         "action": {
             "type": "Click"
         },
-        "focus": {
-            "Node.Action.Succeeded": "开始巡逻"
-        },
         "next": [
             "bjdx_巡逻循环"
         ],
@@ -838,13 +907,16 @@
                 "x": -6284,
                 "y": -2707
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][巡逻] 开启自动巡逻"
         }
     },
     "bjdx_巡逻循环": {
         "next": [
-            "bjdx_战斗时间",
+            "bjdx_点星调度",
             "bjdx_北俱战斗中",
-            "bjdx_新建节点12"
+            "bjdx_巡逻循环"
         ],
         "$__mpe_code": {
             "position": {
@@ -854,7 +926,7 @@
         }
     },
     "bjdx_北俱战斗中": {
-        "desc": "战斗中：识别到battle.png就锁进自锁，打架时其它节点全程不参与",
+        "desc": "巡逻中遇战：识别 battle 后自锁，直至战斗结束再回巡逻循环",
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -869,20 +941,23 @@
                 ]
             }
         },
-        "pre_delay": 0,
-        "post_delay": 0,
+        "post_delay": 3000,
         "next": [
-            "bjdx_巡逻循环"
+            "bjdx_北俱战斗结束_巡逻",
+            "bjdx_北俱战斗中"
         ],
         "$__mpe_code": {
             "position": {
                 "x": -5650,
                 "y": -2369
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][巡逻战] 巡逻中进入战斗"
         }
     },
-    "bjdx_北俱战斗结束": {
-        "desc": "battle.png消失=战斗结束，回循环",
+    "bjdx_北俱战斗结束_巡逻": {
+        "desc": "巡逻遇战结束，回到巡逻循环",
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -897,14 +972,48 @@
                 ]
             }
         },
+        "inverse": true,
         "next": [
-            "新建节点1"
+            "bjdx_巡逻循环"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5210,
+                "y": -3388
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][巡逻战] 战斗结束，继续巡逻"
+        }
+    },
+    "bjdx_北俱战斗结束": {
+        "desc": "停巡逻后遇战结束，进入点星/兰若寺分流",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    343,
+                    588,
+                    125,
+                    132
+                ],
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "next": [
+            "bjdx_停巡逻后分流"
         ],
         "$__mpe_code": {
             "position": {
                 "x": -4335,
                 "y": -2220
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][分流战] 停巡逻后战斗结束"
         }
     },
     "bjdx11_停止巡逻": {
@@ -927,17 +1036,17 @@
                 ]
             }
         },
-        "focus": {
-            "Node.Action.Succeeded": "停止巡逻"
-        },
         "next": [
-            "bjdx_战斗时间"
+            "bjdx_确定停止巡逻"
         ],
         "$__mpe_code": {
             "position": {
                 "x": -5353,
                 "y": -2658
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][巡逻] 点击停止巡逻"
         }
     },
     "bjdx_确定停止巡逻": {
@@ -954,7 +1063,7 @@
         },
         "post_delay": 3000,
         "next": [
-            "新建节点1",
+            "bjdx_停巡逻后分流",
             "bjdx_前往兰若寺"
         ],
         "$__mpe_code": {
@@ -962,6 +1071,9 @@
                 "x": -5342,
                 "y": -2891
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][巡逻] 已确认停止巡逻"
         }
     },
     "bjdx_打开地图": {
@@ -987,9 +1099,6 @@
         }
     },
     "bjdx_前往兰若寺": {
-        "focus": {
-            "Node.Action.Succeeded": "前往兰若寺点星"
-        },
         "next": [
             "bjdx_占位",
             "bjdx_大地图兰若寺",
@@ -1000,6 +1109,9 @@
                 "x": -5724,
                 "y": -1266
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 前往兰若寺"
         }
     },
     "bjdx_大地图兰若寺": {
@@ -1022,6 +1134,9 @@
                 "x": -5299,
                 "y": -1236
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 大地图选择兰若寺"
         }
     },
     "bjdx_占位": {
@@ -1053,20 +1168,14 @@
                 "x": -5279,
                 "y": -1486
             }
-        }
-    },
-    "bjdx_新建节点12": {
-        "next": [
-            "bjdx_巡逻循环"
-        ],
-        "$__mpe_code": {
-            "position": {
-                "x": -5637,
-                "y": -1991
-            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 小地图选点传送"
         }
     },
     "bjdx_新建节点13": {
+        "desc": "可选：技能18图标，命中后进入挑战选择",
+        "max_hit": 1,
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -1078,11 +1187,17 @@
         "action": {
             "type": "Click"
         },
+        "next": [
+            "bjdx_挑战选择中"
+        ],
         "$__mpe_code": {
             "position": {
                 "x": -2826,
                 "y": -1351
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 技能18 快捷挑战"
         }
     },
     "bjdx_北俱战斗中_副本3": {
@@ -1103,9 +1218,6 @@
         },
         "pre_delay": 0,
         "post_delay": 0,
-        "focus": {
-            "Node.Action.Succeeded": "停止巡逻后触发战斗"
-        },
         "next": [
             "bjdx_北俱战斗结束",
             "bjdx_北俱战斗中_副本3"
@@ -1115,17 +1227,9 @@
                 "x": -4768,
                 "y": -2559
             }
-        }
-    },
-    "新建节点28": {
-        "next": [
-            "bjdx_战斗时间"
-        ],
-        "$__mpe_code": {
-            "position": {
-                "x": -5379,
-                "y": -2396
-            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][分流战] 停巡逻后进入战斗"
         }
     }
 }

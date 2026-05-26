@@ -1,10 +1,8 @@
 """
-点星调度（巡逻循环内使用，不要放在一次性入口上）。
+点星调度（巡逻循环内使用）。
 
-设计：
-- 巡逻节点跑完后进入 ScheduleGate，用 StarScheduleRouter 决定分支；
-- 预备窗口 :25-:29 / :55-:59 → WaitUntilStar 阻塞等到 :30 / :00；
-- 到点 → StarFlow（点星子流程，请自行扩展）→ 回到 Patrol_Main 继续巡逻。
+点星时段：每半小时的最后 3 分钟，即 :27–:30、:57–:00（含整点 :00、半点 :30）。
+预备窗口：:25–:26、:55–:56，进入等待至点星时段。
 """
 
 import time
@@ -14,76 +12,83 @@ from datetime import datetime
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 
+# 与 pipeline 节点名一致
+NODE_STAR_FLOW = "bjdx_点星时段_停巡逻"
+NODE_WAIT_STAR = "bjdx_等待点星"
+NODE_PATROL_LOOP = "bjdx_巡逻循环"
 
-def is_star_prep_window(now: datetime) -> bool:
-    m = now.minute
-    return (25 <= m <= 29) or (55 <= m <= 59)
+
+def is_star_window(now: datetime | None = None) -> bool:
+    """点星时段 :27–:30、:57–:00。"""
+    if now is None:
+        now = datetime.now()
+    return now.minute in (0, 27, 28, 29, 30, 57, 58, 59)
 
 
-def is_star_fire_minute(now: datetime) -> bool:
-    """整点或半点，允许前 15 秒内触发（避免错过秒级窗口）。"""
-    return now.minute in (0, 30) and now.second < 15
+def is_star_prep_window(now: datetime | None = None) -> bool:
+    """点星前 2 分钟，阻塞等待进入点星时段。"""
+    if now is None:
+        now = datetime.now()
+    return now.minute in (25, 26, 55, 56)
 
 
 @AgentServer.custom_action("StarScheduleRouter")
 class StarScheduleRouter(CustomAction):
-    """
-    巡逻循环里的调度器：只负责跳转，不阻塞、不点星。
-    必须配合 pipeline 里存在 WaitUntilStar / StarFlow_Entry / Patrol_Main 节点。
-    """
+    """巡逻循环调度：点星时段停巡逻，否则继续北俱巡逻。"""
 
     def run(self, context, argv) -> bool:
         try:
             now = datetime.now()
-            node = argv.node_name
-
-            if is_star_fire_minute(now):
-                nxt = ["StarFlow_Entry"]
-                hint = "已到点星时刻，进入点星"
+            if is_star_window(now):
+                nxt = [NODE_STAR_FLOW]
+                hint = "点星时段(:27-:30/:57-:00)"
             elif is_star_prep_window(now):
-                nxt = ["WaitUntilStar"]
-                hint = "预备窗口，进入内置等待至 :00/:30"
+                nxt = [NODE_WAIT_STAR]
+                hint = "预备窗口，等待点星时段"
             else:
-                nxt = ["Patrol_Continue"]
+                nxt = [NODE_PATROL_LOOP]
                 hint = "非点星时段，继续巡逻"
 
             print(
-                f"[StarScheduleRouter] {now.strftime('%H:%M:%S')} {hint} -> {nxt}",
+                f"[bjdx][调度] {now.strftime('%H:%M:%S')} {hint} -> {nxt}",
                 flush=True,
             )
-            context.override_next(node, nxt)
+            context.override_next(argv.node_name, nxt)
             return True
         except Exception:
-            print("[StarScheduleRouter] 异常:", flush=True)
+            print("[bjdx][调度] StarScheduleRouter 异常:", flush=True)
             traceback.print_exc()
             return False
 
 
 @AgentServer.custom_action("WaitUntilNextStar")
 class WaitUntilNextStar(CustomAction):
-    """内置计时：阻塞直到下一个 :00 或 :30（巡逻暂停，到点再走 next）。"""
+    """阻塞直到进入点星时段（:27 起或 :57 起，含 :00/:30）。"""
 
     def run(self, context, argv) -> bool:
         try:
-            print("[WaitUntilNextStar] 开始等待点星时刻 :00 / :30 …", flush=True)
+            print(
+                "[bjdx][调度] 等待点星时段 :27-:30 / :57-:00 …",
+                flush=True,
+            )
             last_log = 0.0
             while True:
                 now = datetime.now()
-                if is_star_fire_minute(now) or now.minute in (0, 30):
+                if is_star_window(now):
                     print(
-                        f"[WaitUntilNextStar] 到点 {now.strftime('%H:%M:%S')}，进入点星流程",
+                        f"[bjdx][调度] 进入点星时段 {now.strftime('%H:%M:%S')}",
                         flush=True,
                     )
                     return True
                 t = time.time()
                 if t - last_log >= 30:
                     print(
-                        f"[WaitUntilNextStar] 等待中… 当前 {now.strftime('%H:%M:%S')}",
+                        f"[bjdx][调度] 等待中… {now.strftime('%H:%M:%S')}",
                         flush=True,
                     )
                     last_log = t
                 time.sleep(0.5)
         except Exception:
-            print("[WaitUntilNextStar] 异常:", flush=True)
+            print("[bjdx][调度] WaitUntilNextStar 异常:", flush=True)
             traceback.print_exc()
             return False

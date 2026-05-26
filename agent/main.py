@@ -10,11 +10,19 @@ os.chdir(_AGENT_DIR)
 from maa.agent.agent_server import AgentServer
 from maa.toolkit import Toolkit
 
-try:
-    import custom.action.open_explorer  # noqa: F401 — 注册 OpenExplorer
-except Exception as e:
-    print(f"[agent] 加载 custom.action.open_explorer 失败: {e}", flush=True)
-    raise
+def _load_agent_modules() -> None:
+    for name in (
+        "custom.action.open_explorer",
+        "custom.action.star_schedule",
+    ):
+        try:
+            __import__(name)
+        except Exception as e:
+            print(f"[agent] 加载 {name} 失败: {e}", flush=True)
+            raise
+
+
+_load_agent_modules()
 
 
 def _parse_socket_id() -> str:

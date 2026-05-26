@@ -42,7 +42,7 @@
     {
       "name": "北俱+点星",
       "entry": "bjdx_北俱",
-      "default_check": false,
+      "default_check": true,
       "doc": [
         "自动北俱—点星"
       ]
@@ -107,7 +107,7 @@
   "InstanceName": "配置 1",
   "AdbDevice": {
     "InfoHandle": {
-      "value": 2704554734672
+      "value": 2139265434336
     },
     "Name": "MuMu安卓设备-MuMuPlayer12 v5",
     "AdbPath": "D:/Common/mumu/MuMuPlayer/nx_main/adb.exe",
