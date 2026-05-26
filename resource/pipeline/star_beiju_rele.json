@@ -103,19 +103,14 @@
         }
     },
     "bjdx_找星": {
-        "max_hit": 5,
+        "desc": "模板找 17/18 技能星，刷星后持续识别直到命中（无 max_hit）",
         "recognition": {
-            "type": "OCR",
+            "type": "TemplateMatch",
             "param": {
-                "expected": [
-                    "地杰星",
-                    "地飞星",
-                    "地狗星",
-                    "地平星",
-                    "地雄星",
-                    "地威星",
-                    "地英星",
-                    "地奇星"
+                "template": [
+                    "star/17.png",
+                    "star/18.png",
+                    "star/182.png"
                 ]
             }
         },
@@ -123,10 +118,10 @@
             "type": "Click",
             "param": {
                 "target_offset": [
-                    27,
-                    -136,
-                    -52,
-                    64
+                    19,
+                    -125,
+                    -50,
+                    11
                 ]
             }
         },
@@ -136,7 +131,7 @@
             "bjdx_重叠了"
         ],
         "on_error": [
-            "bjdx_点星结束"
+            "bjdx_找星失败分流"
         ],
         "$__mpe_code": {
             "position": {
@@ -145,7 +140,57 @@
             }
         },
         "focus": {
-            "Node.Action.Succeeded": "[bjdx][点星] OCR 点击地煞星"
+            "Node.Action.Succeeded": "[bjdx][点星] 模板命中并点击"
+        }
+    },
+    "bjdx_找星失败分流": {
+        "desc": "Agent StarSearchOnError：窗口内继续找星，否则结束",
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "StarSearchOnError",
+                "custom_action_param": {
+                    "minutes_before": 3
+                }
+            }
+        },
+        "next": [],
+        "$__mpe_code": {
+            "position": {
+                "x": -3046,
+                "y": -900
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 找星未命中分流"
+        }
+    },
+    "bjdx_等待刷星": {
+        "desc": "Agent WaitUntilStarSpawn：等到 :00/:30 再找星",
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "WaitUntilStarSpawn"
+            }
+        },
+        "next": [
+            "bjdx_找星"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -3046,
+                "y": -970
+            }
+        },
+        "focus": {
+            "Node.Action.Starting": "[bjdx][点星] 等待刷星 :00/:30",
+            "Node.Action.Succeeded": "[bjdx][点星] 刷星时刻到"
         }
     },
     "bjdx_确定": {
@@ -186,7 +231,7 @@
     },
     "bjdx_找星模式": {
         "next": [
-            "bjdx_找星"
+            "bjdx_等待刷星"
         ],
         "$__mpe_code": {
             "position": {
@@ -212,6 +257,7 @@
         },
         "post_delay": 4000,
         "next": [
+            "bjdx_战斗点星",
             "bjdx_点星结束"
         ],
         "$__mpe_code": {
@@ -493,6 +539,7 @@
             }
         },
         "next": [
+            "bjdx_背包找香",
             "bjdx_打开背包"
         ],
         "$__mpe_code": {
@@ -502,7 +549,7 @@
             }
         },
         "focus": {
-            "Node.Action.Succeeded": "[bjdx][北俱] 已在北俱冰原"
+            "Node.Action.Succeeded": "[bjdx][北俱] 已在北俱冰原，检查背包"
         }
     },
     "bjdx_重叠了": {
@@ -569,7 +616,7 @@
             }
         },
         "next": [
-            "bjdx_点星结束"
+            "bjdx_点星收尾"
         ],
         "$__mpe_code": {
             "position": {
@@ -579,6 +626,118 @@
         },
         "focus": {
             "Node.Action.Succeeded": "[bjdx][点星] 关闭点星模式"
+        }
+    },
+    "bjdx_点星收尾": {
+        "desc": "回北俱前：依次尝试退出拍照/相机/点星界面（最多循环 5 次）",
+        "max_hit": 5,
+        "next": [
+            "bjdx_收尾_退出拍照",
+            "bjdx_收尾_退出相机",
+            "bjdx_收尾_关点星",
+            "bjdx_北俱"
+        ],
+        "on_error": [
+            "bjdx_北俱"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1300,
+                "y": -1100
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 点星收尾，准备回北俱"
+        }
+    },
+    "bjdx_收尾_退出拍照": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/carema_photo.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_点星收尾"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1300,
+                "y": -980
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 退出拍照界面"
+        }
+    },
+    "bjdx_收尾_退出相机": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "star/carema.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "bjdx_点星收尾"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1300,
+                "y": -860
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 退出相机"
+        }
+    },
+    "bjdx_收尾_关点星": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    121,
+                    640,
+                    71,
+                    63
+                ],
+                "expected": [
+                    "点星"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1218,
+                    34,
+                    30,
+                    26
+                ]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "bjdx_点星收尾"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -1300,
+                "y": -740
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][点星] 点击关闭点星"
         }
     },
     "bjdx_我要观点": {
@@ -625,8 +784,7 @@
     },
     "bjdx_点星结束": {
         "next": [
-            "bjdx_北俱",
-            "bjdx_战斗点星"
+            "bjdx_点星收尾"
         ],
         "$__mpe_code": {
             "position": {
@@ -635,7 +793,7 @@
             }
         },
         "focus": {
-            "Node.Action.Succeeded": "[bjdx][点星] 点星流程结束，回北俱"
+            "Node.Action.Succeeded": "[bjdx][点星] 点星流程结束，进入收尾"
         }
     },
     "bjdx_点星调度": {
@@ -646,7 +804,10 @@
         "action": {
             "type": "Custom",
             "param": {
-                "custom_action": "StarScheduleRouter"
+                "custom_action": "StarScheduleRouter",
+                "custom_action_param": {
+                    "minutes_before": 3
+                }
             }
         },
         "next": [],
@@ -661,34 +822,9 @@
             "Node.Action.Succeeded": "[bjdx][调度] Agent 路由完成"
         }
     },
-    "bjdx_等待点星": {
-        "desc": "Agent WaitUntilNextStar：:25-:26 / :55-:56 等到点星时段",
-        "recognition": {
-            "type": "DirectHit"
-        },
-        "action": {
-            "type": "Custom",
-            "param": {
-                "custom_action": "WaitUntilNextStar"
-            }
-        },
-        "next": [
-            "bjdx_点星时段_停巡逻"
-        ],
-        "$__mpe_code": {
-            "position": {
-                "x": -5694,
-                "y": -2320
-            }
-        },
-        "focus": {
-            "Node.Action.Starting": "[bjdx][调度] 预备窗口，等待 :27/:57",
-            "Node.Action.Succeeded": "[bjdx][调度] 进入点星时段"
-        }
-    },
     "bjdx_点星时段_停巡逻": {
         "next": [
-            "bjdx11_停止巡逻"
+            "bjdx_点星停巡逻入口"
         ],
         "$__mpe_code": {
             "position": {
@@ -700,7 +836,85 @@
             "Node.Action.Succeeded": "[bjdx][调度] 点星时段，停巡逻"
         }
     },
+    "bjdx_点星停巡逻入口": {
+        "desc": "停巡逻前：若在战斗中先等打完，否则直接停巡逻",
+        "next": [
+            "bjdx_点星前战斗中",
+            "bjdx11_停止巡逻"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5510,
+                "y": -2480
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][调度] 准备停巡逻（先检查战斗）"
+        }
+    },
+    "bjdx_点星前战斗中": {
+        "desc": "点星停巡逻前遇战：battle 自锁至结束",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    343,
+                    588,
+                    125,
+                    132
+                ],
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "post_delay": 3000,
+        "next": [
+            "bjdx_点星前战斗结束",
+            "bjdx_点星前战斗中"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5510,
+                "y": -2320
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][调度战] 点星前战斗中，等待结束"
+        }
+    },
+    "bjdx_点星前战斗结束": {
+        "desc": "点星前战斗结束，再停巡逻",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    343,
+                    588,
+                    125,
+                    132
+                ],
+                "template": [
+                    "battle.png"
+                ]
+            }
+        },
+        "inverse": true,
+        "next": [
+            "bjdx11_停止巡逻"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -5510,
+                "y": -2160
+            }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][调度战] 点星前战斗结束，去停巡逻"
+        }
+    },
     "bjdx_打开背包": {
+        "desc": "点击背包栏；若背包已开则 on_error 进找香",
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -715,11 +929,17 @@
         "next": [
             "bjdx_北俱"
         ],
+        "on_error": [
+            "bjdx_背包找香"
+        ],
         "$__mpe_code": {
             "position": {
                 "x": -6528,
                 "y": -1747
             }
+        },
+        "focus": {
+            "Node.Action.Succeeded": "[bjdx][北俱] 点击打开背包"
         }
     },
     "bjdx_背包找香": {
@@ -1039,6 +1259,9 @@
         "next": [
             "bjdx_确定停止巡逻"
         ],
+        "on_error": [
+            "bjdx_点星停巡逻入口"
+        ],
         "$__mpe_code": {
             "position": {
                 "x": -5353,
@@ -1065,6 +1288,9 @@
         "next": [
             "bjdx_停巡逻后分流",
             "bjdx_前往兰若寺"
+        ],
+        "on_error": [
+            "bjdx_点星停巡逻入口"
         ],
         "$__mpe_code": {
             "position": {

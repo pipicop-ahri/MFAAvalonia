@@ -1,8 +1,8 @@
 """
-点星调度（巡逻循环内使用）。
+点星调度（巡逻循环 + 兰若寺找星）。
 
-点星时段：每半小时的最后 3 分钟，即 :27–:30、:57–:00（含整点 :00、半点 :30）。
-预备窗口：:25–:26、:55–:56，进入等待至点星时段。
+- 点星窗口：每 :00 / :30 刷星前 N 分钟（interface「点星提前」），默认 3 → :27–:30、:57–:00
+- 刷星等待：到兰若寺后若未到 :00/:30，WaitUntilStarSpawn 阻塞至刷星再找星
 """
 
 import time
@@ -12,83 +12,101 @@ from datetime import datetime
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 
-# 与 pipeline 节点名一致
+from custom.star_schedule_config import (
+    is_star_spawn_minute,
+    is_star_window,
+    load_config,
+    star_window_minutes,
+)
+
 NODE_STAR_FLOW = "bjdx_点星时段_停巡逻"
-NODE_WAIT_STAR = "bjdx_等待点星"
 NODE_PATROL_LOOP = "bjdx_巡逻循环"
+NODE_FIND_STAR = "bjdx_找星"
+NODE_STAR_END = "bjdx_点星结束"
 
 
-def is_star_window(now: datetime | None = None) -> bool:
-    """点星时段 :27–:30、:57–:00。"""
-    if now is None:
-        now = datetime.now()
-    return now.minute in (0, 27, 28, 29, 30, 57, 58, 59)
-
-
-def is_star_prep_window(now: datetime | None = None) -> bool:
-    """点星前 2 分钟，阻塞等待进入点星时段。"""
-    if now is None:
-        now = datetime.now()
-    return now.minute in (25, 26, 55, 56)
+def _log(msg: str) -> None:
+    print(msg, flush=True)
 
 
 @AgentServer.custom_action("StarScheduleRouter")
 class StarScheduleRouter(CustomAction):
-    """巡逻循环调度：点星时段停巡逻，否则继续北俱巡逻。"""
+    """巡逻循环：点星窗口停巡逻，否则继续北俱巡逻。"""
 
     def run(self, context, argv) -> bool:
         try:
+            cfg = load_config(context, argv)
             now = datetime.now()
-            if is_star_window(now):
+            if is_star_window(now, cfg):
                 nxt = [NODE_STAR_FLOW]
-                hint = "点星时段(:27-:30/:57-:00)"
-            elif is_star_prep_window(now):
-                nxt = [NODE_WAIT_STAR]
-                hint = "预备窗口，等待点星时段"
+                hint = f"点星窗口(提前{cfg.minutes_before}分)"
             else:
                 nxt = [NODE_PATROL_LOOP]
                 hint = "非点星时段，继续巡逻"
 
-            print(
-                f"[bjdx][调度] {now.strftime('%H:%M:%S')} {hint} -> {nxt}",
-                flush=True,
+            _log(
+                f"[bjdx][调度] {now.strftime('%H:%M:%S')} {hint} "
+                f"窗口分={sorted(star_window_minutes(cfg))} -> {nxt}"
             )
             context.override_next(argv.node_name, nxt)
             return True
         except Exception:
-            print("[bjdx][调度] StarScheduleRouter 异常:", flush=True)
+            _log("[bjdx][调度] StarScheduleRouter 异常:")
             traceback.print_exc()
             return False
 
 
-@AgentServer.custom_action("WaitUntilNextStar")
-class WaitUntilNextStar(CustomAction):
-    """阻塞直到进入点星时段（:27 起或 :57 起，含 :00/:30）。"""
+@AgentServer.custom_action("WaitUntilStarSpawn")
+class WaitUntilStarSpawn(CustomAction):
+    """兰若寺找星前：阻塞至 :00 / :30 刷星。"""
 
     def run(self, context, argv) -> bool:
         try:
-            print(
-                "[bjdx][调度] 等待点星时段 :27-:30 / :57-:00 …",
-                flush=True,
-            )
+            now = datetime.now()
+            if is_star_spawn_minute(now):
+                _log(f"[bjdx][点星] 已刷星时刻 {now.strftime('%H:%M:%S')}，开始找星")
+                return True
+
+            _log("[bjdx][点星] 等待刷星(:00/:30) …")
             last_log = 0.0
             while True:
                 now = datetime.now()
-                if is_star_window(now):
-                    print(
-                        f"[bjdx][调度] 进入点星时段 {now.strftime('%H:%M:%S')}",
-                        flush=True,
-                    )
+                if is_star_spawn_minute(now):
+                    _log(f"[bjdx][点星] 刷星时刻到 {now.strftime('%H:%M:%S')}")
                     return True
                 t = time.time()
                 if t - last_log >= 30:
-                    print(
-                        f"[bjdx][调度] 等待中… {now.strftime('%H:%M:%S')}",
-                        flush=True,
-                    )
+                    _log(f"[bjdx][点星] 等待刷星… {now.strftime('%H:%M:%S')}")
                     last_log = t
                 time.sleep(0.5)
         except Exception:
-            print("[bjdx][调度] WaitUntilNextStar 异常:", flush=True)
+            _log("[bjdx][点星] WaitUntilStarSpawn 异常:")
+            traceback.print_exc()
+            return False
+
+
+@AgentServer.custom_action("StarSearchOnError")
+class StarSearchOnError(CustomAction):
+    """找星未命中：仍在点星窗口则继续找星，否则结束点星回北俱。"""
+
+    def run(self, context, argv) -> bool:
+        try:
+            cfg = load_config(context, argv)
+            now = datetime.now()
+            if is_star_window(now, cfg):
+                _log(
+                    f"[bjdx][点星] 未找到星，仍在点星窗口，继续找星 "
+                    f"({now.strftime('%H:%M:%S')})"
+                )
+                context.override_next(argv.node_name, [NODE_FIND_STAR])
+            else:
+                _log(
+                    f"[bjdx][点星] 未找到星且已出点星窗口，结束点星 "
+                    f"({now.strftime('%H:%M:%S')})"
+                )
+                context.override_next(argv.node_name, [NODE_STAR_END])
+            return True
+        except Exception:
+            _log("[bjdx][点星] StarSearchOnError 异常:")
             traceback.print_exc()
             return False

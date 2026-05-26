@@ -1,5 +1,9 @@
 {
   "CurrentLanguage": "zh-CN",
+  "DownloadSourceIndex": 0,
+  "EnableCheckVersion": false,
+  "EnableAutoUpdateResource": false,
+  "EnableAutoUpdateMFA": false,
   "ResourceUpdateChannelInitialized": true,
   "ColorTheme": "Blue",
   "BaseTheme": "Light",

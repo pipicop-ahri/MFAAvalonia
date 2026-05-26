@@ -44,7 +44,17 @@
       "entry": "bjdx_北俱",
       "default_check": true,
       "doc": [
-        "自动北俱—点星"
+        "自动北俱—点星；可在选项中调整点星提前分钟（便于测试）"
+      ],
+      "option": [
+        {
+          "name": "点星时间设置",
+          "index": 0,
+          "data": {
+            "点星提前": "6",
+            "预备提前": "1"
+          }
+        }
       ]
     },
     {
@@ -107,7 +117,7 @@
   "InstanceName": "配置 1",
   "AdbDevice": {
     "InfoHandle": {
-      "value": 2139265434336
+      "value": 2354631745920
     },
     "Name": "MuMu安卓设备-MuMuPlayer12 v5",
     "AdbPath": "D:/Common/mumu/MuMuPlayer/nx_main/adb.exe",

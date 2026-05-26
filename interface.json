@@ -1,6 +1,7 @@
 {
   "name": "我的MAA项目",
   "version": "1.0.0",
+  "github": "https://github.com/pipicop-ahri/MFAAvalonia",
   "agent": {
     "child_exec": "python",
     "child_args": [
@@ -26,7 +27,10 @@
     {
       "name": "北俱+点星",
       "entry": "bjdx_北俱",
-      "doc": "自动北俱—点星"
+      "doc": "自动北俱—点星；可在选项中调整点星提前分钟（便于测试）",
+      "option": [
+        "点星时间设置"
+      ]
     },
     {
       "name": "使用属性卡",
@@ -77,5 +81,45 @@
       "name": "ADB 控制器",
       "type": "Adb"
     }
-  ]
+  ],
+  "option": {
+    "点星时间设置": {
+      "type": "input",
+      "label": "点星时间",
+      "description": "每整点/半点刷星。点星提前=提前几分钟停巡逻去兰若寺（默认 3 → :27–:30、:57–:00）。",
+      "inputs": [
+        {
+          "name": "点星提前",
+          "label": "点星提前(分钟)",
+          "default": "3",
+          "pipeline_type": "int",
+          "verify": "^([1-9]|10|11|12|13|14|15)$"
+        }
+      ],
+      "pipeline_override": {
+        "bjdx_点星调度": {
+          "action": {
+            "type": "Custom",
+            "param": {
+              "custom_action": "StarScheduleRouter",
+              "custom_action_param": {
+                "minutes_before": "{点星提前}"
+              }
+            }
+          }
+        },
+        "bjdx_找星失败分流": {
+          "action": {
+            "type": "Custom",
+            "param": {
+              "custom_action": "StarSearchOnError",
+              "custom_action_param": {
+                "minutes_before": "{点星提前}"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
