@@ -2,6 +2,7 @@
   "CurrentControllerName": "ADB 控制器",
   "Resource": "默认资源",
   "CurrentTasks": [
+    "单人日常<|||>单人日常",
     "200环<|||>start_200",
     "无限北俱<|||>北俱",
     "点星<|||>点星",
@@ -13,13 +14,35 @@
     "修罗任务<|||>xiuluo",
     "自定义动作<|||>action_custom",
     "自定义识别<|||>recognition_custom",
+    "大话2测试<|||>大话2测试",
+    "单人日常<|||>大话2测试",
     "北俱+点星<|||>bjdx_任务入口"
   ],
   "TaskItems": [
     {
+      "name": "单人日常",
+      "entry": "单人日常",
+      "default_check": true,
+      "controller": [
+        "桌面客户端"
+      ],
+      "group": [
+        "win32"
+      ],
+      "doc": [
+        "PC 日常：活动 → 每日福利 → 抽卡。"
+      ]
+    },
+    {
       "name": "200环",
       "entry": "start_200",
-      "default_check": true,
+      "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "200环"
       ]
@@ -28,6 +51,12 @@
       "name": "无限北俱",
       "entry": "北俱",
       "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "无限北俱"
       ]
@@ -36,6 +65,12 @@
       "name": "点星",
       "entry": "点星",
       "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "需手动到达兰若寺开始，目前只技能17，18随机点星"
       ]
@@ -44,6 +79,12 @@
       "name": "北俱+点星",
       "entry": "bjdx_北俱",
       "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "自动北俱—点星；点星时段内直接去点星，否则先挂北俱。点星提前 1–28 分钟可调"
       ],
@@ -52,7 +93,7 @@
           "name": "点星时间设置",
           "index": 0,
           "data": {
-            "点星提前": "5"
+            "点星提前": "3"
           }
         }
       ]
@@ -61,6 +102,12 @@
       "name": "使用属性卡",
       "entry": "use_attribute_card",
       "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "使用属性卡：打开队伍给队友使用属性卡，需提前组好队"
       ]
@@ -69,6 +116,12 @@
       "name": "心魔试炼",
       "entry": "inner_demon",
       "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "修行至深，难逃心魔侵扰，而心魔之力甚大非比寻常。快去消灭被封印的四界心魔，那里有你的朋友、爱人和仇人!【活动时间】周二、周四、周六全天活动"
       ]
@@ -77,6 +130,12 @@
       "name": "南斗星象",
       "entry": "nandou",
       "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "齐天大圣大闹天宫后，南斗星象移位，天时紊乱，忽昼忽夜，不辨南北，天庭昭告四方，募异士将星象归位，赶快去找太白金星。"
       ]
@@ -85,6 +144,12 @@
       "name": "福泽天下 天降祥瑞",
       "entry": "祥瑞点击剧情",
       "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "福泽天下 天降祥瑞!"
       ]
@@ -93,6 +158,12 @@
       "name": "修罗任务",
       "entry": "xiuluo",
       "default_check": false,
+      "controller": [
+        "ADB 控制器"
+      ],
+      "group": [
+        "adb"
+      ],
       "doc": [
         "修罗界中经常有修罗族人离界四处捣乱，灵兽村使者需要在封碑处守护，一时走不开。希望三界少侠能助他一臂之力。"
       ]
@@ -101,6 +172,13 @@
       "name": "自定义动作",
       "entry": "action_custom",
       "default_check": false,
+      "controller": [
+        "ADB 控制器",
+        "桌面客户端"
+      ],
+      "group": [
+        "debug"
+      ],
       "doc": [
         ""
       ]
@@ -109,8 +187,26 @@
       "name": "自定义识别",
       "entry": "recognition_custom",
       "default_check": false,
+      "controller": [
+        "ADB 控制器",
+        "桌面客户端"
+      ],
+      "group": [
+        "debug"
+      ],
       "doc": [
         ""
+      ]
+    },
+    {
+      "name": "大话2测试",
+      "entry": "大话2测试",
+      "default_check": false,
+      "controller": [
+        "桌面客户端"
+      ],
+      "doc": [
+        "大话2经典版。须绑定主窗口（类名 DHXYJYMainFrame），勿选「聊天窗口」。MPE 鼠标建议 SendMessageWithCursorPos 或 Seize。"
       ]
     }
   ],
@@ -128,5 +224,10 @@
     "AgentPath": "./MaaAgentBinary"
   },
   "CurrentController": 2,
-  "ResourceOptionItems": {}
+  "ResourceOptionItems": {},
+  "DesktopWindowClassName": "DHXYJYMainFrame",
+  "DesktopWindowName": "大话西游2经典版 $Revision：2020549 - 竹径飞花 - 皮皮警长（ID：465569399）",
+  "Win32ControlMouseType": "SendMessageWithCursorPos",
+  "Win32ControlKeyboardType": "PostMessage",
+  "Win32ControlScreenCapType": "FramePool"
 }

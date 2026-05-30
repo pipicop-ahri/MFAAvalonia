@@ -1,7 +1,7 @@
 {
   "name": "我的MAA项目",
   "version": "1.0.0",
-  "github": "https://github.com/pipicop-ahri/MFAAvalonia",
+  "github": "https://gitee.com/pipicop-ahri/mfa-avalonia.git",
   "agent": {
     "child_exec": "python",
     "child_args": [
@@ -10,24 +10,40 @@
   },
   "task": [
     {
+      "name": "单人日常",
+      "entry": "单人日常",
+      "doc": "PC 日常：活动 → 每日福利 → 抽卡。",
+      "controller": ["桌面客户端"]
+    },
+    {
+      "name": "大话2测试",
+      "entry": "大话2测试",
+      "doc": "大话2经典版。须绑定主窗口（类名 DHXYJYMainFrame），勿选「聊天窗口」。MPE 鼠标建议 SendMessageWithCursorPos 或 Seize。",
+      "controller": ["桌面客户端"]
+    },
+    {
       "name": "200环",
       "entry": "start_200",
-      "doc": "200环"
+      "doc": "200环",
+      "controller": ["ADB 控制器"]
     },
     {
       "name": "无限北俱",
       "entry": "北俱",
-      "doc": "无限北俱"
+      "doc": "无限北俱",
+      "controller": ["ADB 控制器"]
     },
     {
       "name": "点星",
       "entry": "点星",
-      "doc": "需手动到达兰若寺开始，目前只技能17，18随机点星"
+      "doc": "需手动到达兰若寺开始，目前只技能17，18随机点星",
+      "controller": ["ADB 控制器"]
     },
     {
       "name": "北俱+点星",
       "entry": "bjdx_北俱",
       "doc": "自动北俱—点星；点星时段内直接去点星，否则先挂北俱。点星提前 1–28 分钟可调",
+      "controller": ["ADB 控制器"],
       "option": [
         "点星时间设置"
       ]
@@ -35,37 +51,44 @@
     {
       "name": "使用属性卡",
       "entry": "use_attribute_card",
-      "doc": "使用属性卡：打开队伍给队友使用属性卡，需提前组好队"
+      "doc": "使用属性卡：打开队伍给队友使用属性卡，需提前组好队",
+      "controller": ["ADB 控制器"]
     },
     {
       "name": "心魔试炼",
       "entry": "inner_demon",
-      "doc": "修行至深，难逃心魔侵扰，而心魔之力甚大非比寻常。快去消灭被封印的四界心魔，那里有你的朋友、爱人和仇人!【活动时间】周二、周四、周六全天活动"
+      "doc": "修行至深，难逃心魔侵扰，而心魔之力甚大非比寻常。快去消灭被封印的四界心魔，那里有你的朋友、爱人和仇人!【活动时间】周二、周四、周六全天活动",
+      "controller": ["ADB 控制器"]
     },
     {
       "name": "南斗星象",
       "entry": "nandou",
-      "doc": "齐天大圣大闹天宫后，南斗星象移位，天时紊乱，忽昼忽夜，不辨南北，天庭昭告四方，募异士将星象归位，赶快去找太白金星。"
+      "doc": "齐天大圣大闹天宫后，南斗星象移位，天时紊乱，忽昼忽夜，不辨南北，天庭昭告四方，募异士将星象归位，赶快去找太白金星。",
+      "controller": ["ADB 控制器"]
     },
     {
       "name": "福泽天下 天降祥瑞",
       "entry": "祥瑞点击剧情",
-      "doc": "福泽天下 天降祥瑞!"
+      "doc": "福泽天下 天降祥瑞!",
+      "controller": ["ADB 控制器"]
     },
     {
       "name": "修罗任务",
       "entry": "xiuluo",
-      "doc": "修罗界中经常有修罗族人离界四处捣乱，灵兽村使者需要在封碑处守护，一时走不开。希望三界少侠能助他一臂之力。"
+      "doc": "修罗界中经常有修罗族人离界四处捣乱，灵兽村使者需要在封碑处守护，一时走不开。希望三界少侠能助他一臂之力。",
+      "controller": ["ADB 控制器"]
     },
     {
       "name": "自定义动作",
       "entry": "action_custom",
-      "doc": ""
+      "doc": "",
+      "controller": ["ADB 控制器", "桌面客户端"]
     },
     {
       "name": "自定义识别",
       "entry": "recognition_custom",
-      "doc": ""
+      "doc": "",
+      "controller": ["ADB 控制器", "桌面客户端"]
     }
   ],
   "resource": [
@@ -80,6 +103,20 @@
     {
       "name": "ADB 控制器",
       "type": "Adb"
+    },
+    {
+      "name": "桌面客户端",
+      "label": "桌面客户端 (Win32)",
+      "description": "大话2经典版：请选主窗口 DHXYJYMainFrame。识别能过但点不动时，在连接里把鼠标改为 SendMessageWithCursorPos 或 Seize。",
+      "type": "Win32",
+      "display_raw": true,
+      "win32": {
+        "class_regex": "DHXYJYMainFrame",
+        "window_regex": "大话西游2经典版",
+        "screencap": "Background",
+        "mouse": "SendMessageWithCursorPos",
+        "keyboard": "PostMessage"
+      }
     }
   ],
   "option": {

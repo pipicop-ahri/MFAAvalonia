@@ -10,3 +10,13 @@ debug/
 
 # 压缩包和大文件
 *.zip
+
+__pycache__/
+*.pyc
+*.pyo
+
+/debug/
+/debug/**
+
+/logs/
+/.idea/

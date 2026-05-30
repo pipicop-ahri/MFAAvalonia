@@ -1,7 +1,8 @@
 {
-    "draw_quality": 85,
-    "logging": true,
-    "save_draw": false,
-    "save_on_error": true,
-    "stdout_level": 2
+  "draw_quality": 85,
+  "logging": true,
+  "save_draw": false,
+  "save_on_error": false,
+  "stdout_level": 2,
+  "show_hit_box": false
 }

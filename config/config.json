@@ -1,8 +1,8 @@
 {
   "CurrentLanguage": "zh-CN",
   "DownloadSourceIndex": 0,
-  "EnableCheckVersion": false,
-  "EnableAutoUpdateResource": false,
+  "EnableCheckVersion": true,
+  "EnableAutoUpdateResource": true,
   "EnableAutoUpdateMFA": false,
   "ResourceUpdateChannelInitialized": true,
   "ColorTheme": "Blue",
@@ -12,8 +12,8 @@
   "UI.MainWindow.Maximized": "false",
   "UI.MainWindow.Width": "1920",
   "UI.MainWindow.Height": "1023",
-  "UI.MainWindow.PositionX": "395",
-  "UI.MainWindow.PositionY": "279",
+  "UI.MainWindow.PositionX": "264",
+  "UI.MainWindow.PositionY": "182",
   "UI.DashboardCardGrid.Layout.TaskQueueView": [
     {
       "Id": "settings",
@@ -72,5 +72,44 @@
     "columns": 12,
     "spacing": 10.0
   },
-  "UI.DashboardCardGrid.ResourceLayoutHash.TaskQueueView": "8962C0D3B352F180BDD17B02B4FC6D2FD45565EC8E4A832B52443D453653CAF0"
+  "UI.DashboardCardGrid.ResourceLayoutHash.TaskQueueView": "8962C0D3B352F180BDD17B02B4FC6D2FD45565EC8E4A832B52443D453653CAF0",
+  "OtherColorTheme": [
+    {
+      "DisplayName": "Pink",
+      "Primary": {
+        "A": 255,
+        "R": 255,
+        "G": 20,
+        "B": 147
+      },
+      "PrimaryBrush": "DeepPink",
+      "PrimaryDark": {
+        "A": 255,
+        "R": 127,
+        "G": 10,
+        "B": 73
+      },
+      "PrimaryDarkBrush": "#ff7f0a49",
+      "Accent": {
+        "A": 255,
+        "R": 255,
+        "G": 192,
+        "B": 203
+      },
+      "AccentBrush": "Pink",
+      "AccentDark": {
+        "A": 255,
+        "R": 127,
+        "G": 96,
+        "B": 101
+      },
+      "AccentDarkBrush": "#ff7f6065"
+    }
+  ],
+  "BackgroundStyle": "Flat",
+  "BackgroundAnimations": true,
+  "BackgroundTransitions": true,
+  "BackgroundImagePath": "D:\\文档\\Picture\\元气壁纸_1779879434347.jpg",
+  "BackgroundImageOpacity": 0.13745271122320196,
+  "FontScale": 1.3
 }
