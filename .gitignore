@@ -9,6 +9,9 @@
 .vs/
 .vscode/
 
+# 本地实例配置（ADB 路径、窗口句柄、勾选任务等）
+/config/instances/
+
 # 压缩包和大文件
 *.zip
 
