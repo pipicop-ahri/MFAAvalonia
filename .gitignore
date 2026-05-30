@@ -1,22 +1,18 @@
 
 # 日志和调试产物
-logs/
-debug/
+/logs/
+/debug/
+*.log
 
 # IDE 配置
-.idea/
+/.idea/
 .vs/
 .vscode/
 
 # 压缩包和大文件
 *.zip
 
+# Python
 __pycache__/
 *.pyc
 *.pyo
-
-/debug/
-/debug/**
-
-/logs/
-/.idea/
